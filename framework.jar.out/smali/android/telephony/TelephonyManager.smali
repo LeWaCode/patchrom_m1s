@@ -1796,12 +1796,8 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-eqz v2, :cond_lewa_0
 
-    :goto_0
-    return-object v1
-
-    :cond_0
     :try_start_0
     invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
 
@@ -1814,7 +1810,9 @@
 
     move-result-object v1
 
-    goto :goto_0
+    :cond_lewa_0
+    :goto_0
+    return-object v1
 
     :catch_0
     move-exception v0
@@ -1935,12 +1933,8 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-eqz v2, :cond_lewa_0
 
-    :goto_0
-    return-object v1
-
-    :cond_0
     :try_start_0
     invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
 
@@ -1953,7 +1947,9 @@
 
     move-result-object v1
 
-    goto :goto_0
+    :cond_lewa_0
+    :goto_0
+    return-object v1
 
     :catch_0
     move-exception v0
