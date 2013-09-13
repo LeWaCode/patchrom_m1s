@@ -740,43 +740,16 @@
     return-void
 .end method
 
-.method static synthetic access$2000(Lcom/android/server/net/NetworkPolicyManagerService;)J
-    .locals 2
-    .parameter "x0"
-
-    .prologue
-    invoke-direct {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
-
-    move-result-wide v0
-
-    return-wide v0
-.end method
-
-.method static synthetic access$2100(Lcom/android/server/net/NetworkPolicyManagerService;Landroid/net/NetworkTemplate;JJ)J
-    .locals 2
+.method static synthetic access$2000(Lcom/android/server/net/NetworkPolicyManagerService;Landroid/net/NetworkTemplate;Z)V
+    .locals 0
     .parameter "x0"
     .parameter "x1"
     .parameter "x2"
-    .parameter "x3"
 
     .prologue
-    invoke-direct/range {p0 .. p5}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+    invoke-direct {p0, p1, p2}, Lcom/android/server/net/NetworkPolicyManagerService;->setNetworkTemplateEnabled(Landroid/net/NetworkTemplate;Z)V
 
-    move-result-wide v0
-
-    return-wide v0
-.end method
-
-.method static synthetic access$2200(Landroid/net/NetworkTemplate;)Landroid/content/Intent;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    invoke-static {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->buildNetworkOverLimitIntent(Landroid/net/NetworkTemplate;)Landroid/content/Intent;
-
-    move-result-object v0
-
-    return-object v0
+    return-void
 .end method
 
 .method static synthetic access$300(Lcom/android/server/net/NetworkPolicyManagerService;)Landroid/util/SparseIntArray;
@@ -900,9 +873,12 @@
     return-object v0
 .end method
 
-.method private static buildNetworkOverLimitIntent(Landroid/net/NetworkTemplate;)Landroid/content/Intent;
+.method static buildNetworkOverLimitIntent(Landroid/net/NetworkTemplate;)Landroid/content/Intent;
     .locals 4
     .parameter "template"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_ACCESS:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     .line 1982
@@ -1228,8 +1204,11 @@
     goto :goto_0
 .end method
 
-.method private currentTimeMillis()J
+.method currentTimeMillis()J
     .locals 2
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_ACCESS:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     .line 1968
@@ -1453,7 +1432,15 @@
     .local v14, title:Ljava/lang/CharSequence;
     const v1, 0x10404f3
 
-    invoke-virtual {v12, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+    const v4, 0x9040026
+
+    move-object/from16 v0, p0
+
+    invoke-static {v0, v10, v11}, Lcom/android/server/net/NetworkPolicyManagerService$Injector;->formatFileSize(Lcom/android/server/net/NetworkPolicyManagerService;J)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v12, v1, v4, v5}, Lcom/android/server/net/NetworkPolicyManagerService$Injector;->getString(Landroid/content/res/Resources;IILjava/lang/String;)Ljava/lang/CharSequence;
 
     move-result-object v7
 
@@ -1555,9 +1542,6 @@
     .line 741
     .restart local v14       #title:Ljava/lang/CharSequence;
     :goto_2
-    const/4 v1, 0x1
-
-    invoke-virtual {v8, v1}, Landroid/app/Notification$Builder;->setOngoing(Z)Landroid/app/Notification$Builder;
 
     .line 742
     const v1, 0x1080507
@@ -1659,12 +1643,12 @@
     :pswitch_6
     move-object/from16 v0, p1
 
-    iget-wide v4, v0, Landroid/net/NetworkPolicy;->limitBytes:J
-
-    sub-long v10, p3, v4
+    invoke-static/range {p1 .. p4}, Lcom/android/server/net/NetworkPolicyManagerService$Injector;->getOverByte(Landroid/net/NetworkPolicy;IJ)J
+  
+    move-result-wide v10
 
     .line 754
-    .local v10, overBytes:J
+    .restart local v10       #overBytes:J
     const v1, 0x10404fd
 
     const/4 v4, 0x1
@@ -2268,10 +2252,9 @@
 
     throw v3
 
-    .line 1509
     .restart local v19       #policy:Landroid/net/NetworkPolicy;
     :cond_1
-    invoke-direct/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
+    invoke-virtual/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
 
     move-result-wide v16
 
@@ -2297,7 +2280,7 @@
 
     move-object/from16 v3, p0
 
-    invoke-direct/range {v3 .. v8}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+    invoke-virtual/range {v3 .. v8}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
 
     move-result-wide v10
 
@@ -2377,11 +2360,14 @@
     return-object v0
 .end method
 
-.method private getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+.method getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
     .locals 9
     .parameter "template"
     .parameter "start"
     .parameter "end"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_ACCESS:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     const-wide/16 v7, 0x0
@@ -2602,36 +2588,6 @@
     goto :goto_0
 .end method
 
-.method private makeNetworkTemplateEnabled(Landroid/net/NetworkPolicy;Z)V
-    .locals 1
-    .parameter "policy"
-    .parameter "networkEnabled"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-
-    .prologue
-    if-eqz p2, :cond_0
-
-    iget-boolean v0, p1, Landroid/net/NetworkPolicy;->ignore:Z
-
-    if-eqz v0, :cond_0
-
-    const/4 v0, 0x0
-
-    iput-boolean v0, p1, Landroid/net/NetworkPolicy;->ignore:Z
-
-    :goto_0
-    return-void
-
-    :cond_0
-    iget-object v0, p1, Landroid/net/NetworkPolicy;->template:Landroid/net/NetworkTemplate;
-
-    invoke-direct {p0, v0, p2}, Lcom/android/server/net/NetworkPolicyManagerService;->setNetworkTemplateEnabled(Landroid/net/NetworkTemplate;Z)V
-
-    goto :goto_0
-.end method
-
 .method private maybeRefreshTrustedTime()V
     .locals 4
 
@@ -2716,7 +2672,7 @@
     invoke-direct {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->maybeRefreshTrustedTime()V
 
     .line 1422
-    invoke-direct {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
+    invoke-virtual {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
 
     move-result-wide v0
 
@@ -4628,7 +4584,7 @@
 
     .prologue
     .line 876
-    invoke-direct/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
+    invoke-virtual/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
 
     move-result-wide v7
 
@@ -4704,7 +4660,7 @@
 
     move-object/from16 v1, p0
 
-    invoke-direct/range {v1 .. v6}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+    invoke-virtual/range {v1 .. v6}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
 
     move-result-wide v13
 
@@ -4736,7 +4692,7 @@
     :goto_2
     move-object/from16 v0, p0
 
-    invoke-direct {v0, v12, v10}, Lcom/android/server/net/NetworkPolicyManagerService;->makeNetworkTemplateEnabled(Landroid/net/NetworkPolicy;Z)V
+    invoke-static {v0, v12, v10}, Lcom/android/server/net/NetworkPolicyManagerService$Injector;->makeNetworkTemplateEnabled(Lcom/android/server/net/NetworkPolicyManagerService;Landroid/net/NetworkPolicy;Z)V
 
     goto :goto_0
 
@@ -5041,7 +4997,7 @@
 
     .line 981
     .local v26, newMeteredIfaces:Ljava/util/HashSet;,"Ljava/util/HashSet<Ljava/lang/String;>;"
-    invoke-direct/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
+    invoke-virtual/range {p0 .. p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
 
     move-result-wide v8
 
@@ -5111,7 +5067,7 @@
 
     move-object/from16 v4, p0
 
-    invoke-direct/range {v4 .. v9}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+    invoke-virtual/range {v4 .. v9}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
 
     move-result-wide v32
 
@@ -5484,7 +5440,7 @@
     invoke-virtual {v0}, Ljava/util/HashSet;->clear()V
 
     .line 601
-    invoke-direct {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
+    invoke-virtual {p0}, Lcom/android/server/net/NetworkPolicyManagerService;->currentTimeMillis()J
 
     move-result-wide v7
 
@@ -5547,7 +5503,7 @@
 
     move-object v0, p0
 
-    invoke-direct/range {v0 .. v5}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
+    invoke-virtual/range {v0 .. v5}, Lcom/android/server/net/NetworkPolicyManagerService;->getTotalBytes(Landroid/net/NetworkTemplate;JJ)J
 
     move-result-wide v12
 

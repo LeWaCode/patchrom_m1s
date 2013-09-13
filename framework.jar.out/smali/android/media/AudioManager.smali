@@ -3337,12 +3337,8 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-eqz v2, :cond_lewa_0
 
-    :goto_0
-    return-void
-
-    :cond_0
     :try_start_0
     iget-object v2, p0, Landroid/media/AudioManager;->mICallBack:Landroid/os/IBinder;
 
@@ -3350,7 +3346,9 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    goto :goto_0
+    :cond_lewa_0
+    :goto_0
+    return-void
 
     :catch_0
     move-exception v0

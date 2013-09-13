@@ -82,15 +82,7 @@
 
     invoke-virtual {p0, v3, v4, p0}, Landroid/app/DatePickerDialog;->setButton(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V
 
-    const/4 v3, -0x2
-
-    const/high16 v4, 0x104
-
-    invoke-virtual {v1, v4}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
-
-    move-result-object v4
-
-    invoke-virtual {p0, v3, v4, p0}, Landroid/app/DatePickerDialog;->setButton(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V
+    invoke-direct {p0, v1, p0}, Landroid/app/DatePickerDialog;->setButton(Landroid/content/Context;Landroid/app/DatePickerDialog;)V
 
     .line 104
     const/4 v3, 0x0
@@ -169,7 +161,28 @@
 
     invoke-direct/range {v0 .. v6}, Landroid/app/DatePickerDialog;-><init>(Landroid/content/Context;ILandroid/app/DatePickerDialog$OnDateSetListener;III)V
 
-    .line 80
+    return-void
+.end method
+
+.method private setButton(Landroid/content/Context;Landroid/app/DatePickerDialog;)V
+    .locals 2
+    .parameter "context"
+    .parameter "dialog"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
+    .prologue
+    const/4 v0, -0x2
+
+    const/high16 v1, 0x104
+
+    invoke-virtual {p1, v1}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
+
+    move-result-object v1
+
+    invoke-virtual {p0, v0, v1, p2}, Landroid/app/DatePickerDialog;->setButton(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V
+
     return-void
 .end method
 

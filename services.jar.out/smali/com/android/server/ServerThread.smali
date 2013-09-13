@@ -2204,13 +2204,12 @@
 
     .line 692
     .end local v68           #dreamy:Landroid/service/dreams/DreamManagerService;
-
+    .end local v83           #mountService:Lcom/android/server/MountService;
     .restart local v67       #dreamy:Landroid/service/dreams/DreamManagerService;
     :cond_a
     :goto_38
     invoke-static {v4}, Lcom/android/server/ServerThread$Injector;->registerServices(Landroid/content/Context;)V
 
-    .end local v81           #mountService:Lcom/android/server/MountService;
     :goto_lewa_0
     invoke-virtual/range {v121 .. v121}, Lcom/android/server/wm/WindowManagerService;->detectSafeMode()Z
 
@@ -2340,7 +2339,6 @@
 
     .line 754
     :goto_3e
-    invoke-static {v4}, Lcom/android/server/ServerThread$Injector;->registerReceivers(Landroid/content/Context;)V
     :try_start_52
     invoke-virtual/range {v80 .. v80}, Lcom/android/internal/widget/LockSettingsService;->systemReady()V
     :try_end_52
@@ -2348,6 +2346,8 @@
 
     .line 760
     :goto_3f
+    invoke-static {v4}, Lcom/android/server/ServerThread$Injector;->registerReceivers(Landroid/content/Context;)V
+
     move-object/from16 v17, v4
 
     .line 761

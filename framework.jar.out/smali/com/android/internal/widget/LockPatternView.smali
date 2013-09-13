@@ -127,9 +127,6 @@
     .locals 9
     .parameter "context"
     .parameter "attrs"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
 
     .prologue
     .line 244
@@ -346,11 +343,8 @@
     invoke-virtual {v7, v8}, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint$Cap;)V
 
     .line 271
-    const v8, 0x1080115
+    const v7, 0x1080116
 
-    invoke-virtual {v0, v7, v8}, Landroid/content/res/TypedArray;->getResourceId(II)I
-
-    move-result v7
     invoke-direct {p0, v7}, Lcom/android/internal/widget/LockPatternView;->getBitmapFor(I)Landroid/graphics/Bitmap;
 
     move-result-object v7

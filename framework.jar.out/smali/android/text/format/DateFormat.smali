@@ -1416,9 +1416,11 @@
 
     monitor-enter v8
 
+    .line 234
     :try_start_1
     sput-object v1, Landroid/text/format/DateFormat;->sIs24HourLocale:Ljava/util/Locale;
 
+    .line 235
     const-string v7, "12"
 
     invoke-virtual {v5, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1432,10 +1434,12 @@
     :goto_2
     sput-boolean v7, Landroid/text/format/DateFormat;->sIs24Hour:Z
 
+    .line 236
     monitor-exit v8
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_1
 
+    .line 239
     .end local v1           #locale:Ljava/util/Locale;
     .end local v2           #natural:Ljava/text/DateFormat;
     :cond_1
@@ -1467,6 +1471,7 @@
 
     throw v6
 
+    .line 227
     .restart local v2       #natural:Ljava/text/DateFormat;
     .restart local v3       #pattern:Ljava/lang/String;
     .restart local v4       #sdf:Ljava/text/SimpleDateFormat;

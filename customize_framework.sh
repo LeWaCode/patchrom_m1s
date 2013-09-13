@@ -16,5 +16,6 @@ then
             rm -rf "$file"
     done
 
-	rm -rf "$BUILD_OUT/framework/smali/com/google"
+    rm -rf "$BUILD_OUT/framework/smali/com/google"
+    rm -rf "$BUILD_OUT/framework/smali/com/qualcomm"
 fi

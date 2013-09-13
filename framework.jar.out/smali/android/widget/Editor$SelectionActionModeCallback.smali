@@ -7,10 +7,6 @@
 
 
 # annotations
-.annotation build Landroid/annotation/LewaHook;
-    value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
-.end annotation
-
 .annotation system Ldalvik/annotation/EnclosingClass;
     value = Landroid/widget/Editor;
 .end annotation
@@ -49,6 +45,18 @@
     invoke-direct {p0, p1}, Landroid/widget/Editor$SelectionActionModeCallback;-><init>(Landroid/widget/Editor;)V
 
     return-void
+.end method
+
+.method private isSetActionModeTile()Z
+    .locals 1
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 
@@ -106,6 +114,9 @@
     .locals 8
     .parameter "mode"
     .parameter "menu"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     const/4 v7, 0x6
@@ -157,6 +168,32 @@
 
     .line 2662
     .local v0, allowText:Z
+    invoke-direct {p0}, Landroid/widget/Editor$SelectionActionModeCallback;->isSetActionModeTile()Z
+
+    move-result v5
+
+    if-eqz v5, :cond_lewa_0
+
+    iget-object v5, p0, Landroid/widget/Editor$SelectionActionModeCallback;->this$0:Landroid/widget/Editor;
+
+    #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-static {v5}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+
+    move-result-object v5
+
+    const v6, 0x10403d6
+
+    invoke-virtual {v5, v6}, Landroid/content/Context;->getString(I)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-virtual {p1, v5}, Landroid/view/ActionMode;->setTitle(Ljava/lang/CharSequence;)V
+
+    :cond_lewa_0
     const/4 v5, 0x0
 
     invoke-virtual {p1, v5}, Landroid/view/ActionMode;->setSubtitle(Ljava/lang/CharSequence;)V

@@ -15,9 +15,3 @@
 
 .method public abstract pokeWakelock(I)V
 .end method
-
-.method public abstract setLockScreenMode(I)V
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end method

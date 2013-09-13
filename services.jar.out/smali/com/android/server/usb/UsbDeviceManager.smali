@@ -98,7 +98,7 @@
 
 .field private final mUEventObserver:Landroid/os/UEventObserver;
 
-.field private mUiContext:Landroid/content/Context;
+.field mUiContext:Landroid/content/Context;
     .annotation build Landroid/annotation/LewaHook;
         value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
     .end annotation
@@ -390,18 +390,6 @@
     return v0
 .end method
 
-.method static synthetic access$1900(Lcom/android/server/usb/UsbDeviceManager;)Landroid/content/Context;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager;->getUiContext()Landroid/content/Context;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
 .method static synthetic access$200(Lcom/android/server/usb/UsbDeviceManager;)V
     .locals 0
     .parameter "x0"
@@ -411,17 +399,6 @@
     invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager;->startAccessoryMode()V
 
     return-void
-.end method
-
-.method static synthetic access$2002(Lcom/android/server/usb/UsbDeviceManager;Landroid/content/Context;)Landroid/content/Context;
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    iput-object p1, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
-
-    return-object p1
 .end method
 
 .method static synthetic access$300(Lcom/android/server/usb/UsbDeviceManager;Ljava/lang/String;)Ljava/lang/String;
@@ -671,41 +648,6 @@
     .line 284
     :cond_3
     const/4 v2, 0x1
-
-    goto :goto_0
-.end method
-
-.method private getUiContext()Landroid/content/Context;
-    .locals 1
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
-
-    if-nez v0, :cond_0
-
-    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mContext:Landroid/content/Context;
-
-    invoke-static {v0}, Lcom/android/internal/app/ThemeUtils;->createUiContext(Landroid/content/Context;)Landroid/content/Context;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
-
-    :cond_0
-    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
-
-    :goto_0
-    return-object v0
-
-    :cond_1
-    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mContext:Landroid/content/Context;
 
     goto :goto_0
 .end method
@@ -1440,6 +1382,41 @@
     move-result-object v0
 
     return-object v0
+.end method
+
+.method getUiContext()Landroid/content/Context;
+    .locals 1
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
+
+    if-nez v0, :cond_0
+
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mContext:Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/android/internal/app/ThemeUtils;->createUiContext(Landroid/content/Context;)Landroid/content/Context;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
+
+    :cond_0
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
+
+    if-eqz v0, :cond_1
+
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mUiContext:Landroid/content/Context;
+
+    :goto_0
+    return-object v0
+
+    :cond_1
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager;->mContext:Landroid/content/Context;
+
+    goto :goto_0
 .end method
 
 .method public openAccessory(Landroid/hardware/usb/UsbAccessory;)Landroid/os/ParcelFileDescriptor;

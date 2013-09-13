@@ -18,12 +18,6 @@
 
 .field public static final ACTION_QOS_STATE_IND:Ljava/lang/String; = "android.intent.action.ACTION_QOS_STATE_IND"
 
-.field public static final ACTION_PHB_STATE_CHANGED:Ljava/lang/String; = "android.intent.action.PHB_STATE_CHANGED"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end field
-
 .field public static final ACTION_RADIO_TECHNOLOGY_CHANGED:Ljava/lang/String; = "android.intent.action.RADIO_TECHNOLOGY"
 
 .field public static final ACTION_SAFE_WIFI_CHANNELS_CHANGED:Ljava/lang/String; = "android.intent.action.SAFE_WIFI_CHANNELS_CHANGED"
@@ -34,25 +28,7 @@
 
 .field public static final ACTION_SIGNAL_STRENGTH_CHANGED:Ljava/lang/String; = "android.intent.action.SIG_STR"
 
-.field public static final ACTION_SIM_INFO_UPDATE:Ljava/lang/String; = "android.intent.action.SIM_INFO_UPDATE"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end field
-
-.field public static final ACTION_SIM_NAME_UPDATE:Ljava/lang/String; = "android.intent.action.SIM_NAME_UPDATE"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end field
-
 .field public static final ACTION_SIM_STATE_CHANGED:Ljava/lang/String; = "android.intent.action.SIM_STATE_CHANGED"
-
-.field public static final ACTION_SIM_STATE_CHANGED_EXTEND:Ljava/lang/String; = "android.intent.action.SIM_STATE_CHANGED_EXTEND"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end field
 
 .field public static final ACTION_UNSOL_RESPONSE_OEM_HOOK_RAW:Ljava/lang/String; = "android.intent.action.ACTION_UNSOL_RESPONSE_OEM_HOOK_RAW"
 

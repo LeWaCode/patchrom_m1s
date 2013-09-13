@@ -2479,7 +2479,7 @@
 
     if-eqz v0, :cond_0
 
-    const v0, 0x9090007
+    const v0, 0x909000e
 
     :goto_0
     return v0
