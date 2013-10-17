@@ -2194,7 +2194,9 @@
 
     const v1, 0x1080359
 
-    invoke-static {v1}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(I)I
+    const v2, 0x9080075
+
+    invoke-static {v1, v2}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(II)I
 
     move-result v1
 
@@ -2213,7 +2215,9 @@
 
     const v1, 0x10802b0
 
-    invoke-static {v1}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(I)I
+    const v2, 0x9080076
+
+    invoke-static {v1, v2}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(II)I
 
     move-result v1
 
@@ -2232,7 +2236,9 @@
 
     const v1, 0x108026c
 
-    invoke-static {v1}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(I)I
+    const v2, 0x9080077
+
+    invoke-static {v1, v2}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(II)I
 
     move-result v1
 
@@ -2251,7 +2257,9 @@
 
     const v1, 0x1080273
 
-    invoke-static {v1}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(I)I
+    const v2, 0x9080078
+
+    invoke-static {v1, v2}, Landroid/widget/AppSecurityPermissions$Injector;->resolveResourceId(II)I
 
     move-result v1
 
