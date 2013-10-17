@@ -33,9 +33,6 @@
 .end method
 
 .method public abstract reboot()V
-.end method
-
-.method public abstract reboot()V
     .annotation build Landroid/annotation/LewaHook;
         value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
     .end annotation

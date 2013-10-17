@@ -18,4 +18,5 @@ then
 
     rm -rf "$BUILD_OUT/framework/smali/com/google"
     rm -rf "$BUILD_OUT/framework/smali/com/qualcomm"
+    rm -rf "$BUILD_OUT/framework/smali/android/renderscript" 
 fi

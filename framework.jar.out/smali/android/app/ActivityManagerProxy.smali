@@ -5677,36 +5677,28 @@
     .end annotation
 
     .prologue
-    .line 3363
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 3364
     .local v0, data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 3365
     .local v1, reply:Landroid/os/Parcel;
     const-string v2, "android.app.IActivityManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 3366
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    .line 3367
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 3368
     invoke-virtual {v0, p3}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 3369
     invoke-virtual {v0, p4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 3370
     iget-object v2, p0, Landroid/app/ActivityManagerProxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v3, 0x65
@@ -5715,16 +5707,12 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 3371
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 3372
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 3373
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 3374
     return-void
 .end method
 
@@ -5741,97 +5729,42 @@
     .prologue
     const/4 v5, 0x0
 
-    .line 2606
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 2607
     .local v1, data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v2
 
-    .line 2608
     .local v2, reply:Landroid/os/Parcel;
     const-string v3, "android.app.IActivityManager"
 
     invoke-virtual {v1, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 2609
     invoke-virtual {p1, v1, v5}, Landroid/content/Intent;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 2610
     invoke-virtual {v1, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 2611
     iget-object v3, p0, Landroid/app/ActivityManagerProxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v4, 0x55
 
     invoke-interface {v3, v4, v1, v2, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 2612
     invoke-virtual {v2}, Landroid/os/Parcel;->readException()V
 
-    .line 2613
     invoke-virtual {v2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object v0
 
-    .line 2614
     .local v0, binder:Landroid/os/IBinder;
     invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
 
-    .line 2615
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 2616
     return-object v0
-.end method
-
-.method public performAppGcs()V
-    .locals 5
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .prologue
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v0
-
-    .local v0, data:Landroid/os/Parcel;
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v1
-
-    .local v1, reply:Landroid/os/Parcel;
-    const-string v2, "android.app.IActivityManager"
-
-    invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
-
-    iget-object v2, p0, Landroid/app/ActivityManagerProxy;->mRemote:Landroid/os/IBinder;
-
-    const/16 v3, 0x12d
-
-    const/4 v4, 0x0
-
-    invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-
-    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-
-    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
-
-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
-
-    return-void
 .end method
 
 .method public profileControl(Ljava/lang/String;ZLjava/lang/String;Landroid/os/ParcelFileDescriptor;I)Z

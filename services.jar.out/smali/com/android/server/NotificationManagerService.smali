@@ -111,7 +111,11 @@
 
 .field private mHandler:Lcom/android/server/NotificationManagerService$WorkerHandler;
 
-.field private mInCall:Z
+.field mInCall:Z
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_ACCESS:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+.end field
 
 .field private mIntentReceiver:Landroid/content/BroadcastReceiver;
 

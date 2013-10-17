@@ -252,9 +252,14 @@
     .local v6, pkg:Ljava/lang/String;
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$UninstallReceiver;->this$0:Lcom/android/server/AlarmManagerService;
 
-    invoke-virtual {v8, v6}, Lcom/android/server/AlarmManagerService;->removeLocked(Ljava/lang/String;)V
+    invoke-virtual {v8, v6}, Lcom/android/server/AlarmManagerService;->killLewaSystemProcess(Ljava/lang/String;)V
 
-    .line 911
+    iget-object v8, p0, Lcom/android/server/AlarmManagerService$UninstallReceiver;->this$0:Lcom/android/server/AlarmManagerService;
+
+    const-string v10, ""
+
+    invoke-virtual {v8, v10}, Lcom/android/server/AlarmManagerService;->removeLocked(Ljava/lang/String;)V
+
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$UninstallReceiver;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mBroadcastStats:Ljava/util/HashMap;
@@ -262,7 +267,9 @@
 
     move-result-object v8
 
-    invoke-virtual {v8, v6}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+    const-string v10, ""
+
+    invoke-virtual {v8, v10}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 909
     add-int/lit8 v3, v3, 0x1

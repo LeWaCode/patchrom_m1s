@@ -115,12 +115,6 @@
 
 .field public ledOnMS:I
 
-.field public mTagFlag:I
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-.end field
-
 .field public number:I
 
 .field public priority:I
@@ -153,7 +147,6 @@
     .locals 1
 
     .prologue
-    .line 767
     new-instance v0, Landroid/app/Notification$1;
 
     invoke-direct {v0}, Landroid/app/Notification$1;-><init>()V
@@ -164,14 +157,10 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 3
+    .locals 2
 
     .prologue
-    const/4 v2, 0x0
-
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    iput v2, p0, Landroid/app/Notification;->mTagFlag:I
 
     const/4 v0, -0x1
 
@@ -183,7 +172,9 @@
 
     iput-wide v0, p0, Landroid/app/Notification;->when:J
 
-    iput v2, p0, Landroid/app/Notification;->priority:I
+    const/4 v0, 0x0
+
+    iput v0, p0, Landroid/app/Notification;->priority:I
 
     return-void
 .end method
@@ -198,10 +189,6 @@
 
     .prologue
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    const/4 v0, 0x0
-
-    iput v0, p0, Landroid/app/Notification;->mTagFlag:I
 
     const/4 v0, -0x1
 
@@ -231,8 +218,6 @@
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput v1, p0, Landroid/app/Notification;->mTagFlag:I
-
     const/4 v0, -0x1
 
     iput v0, p0, Landroid/app/Notification;->audioStreamType:I
@@ -255,16 +240,9 @@
 .method public constructor <init>(Landroid/os/Parcel;)V
     .locals 3
     .parameter "parcel"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
 
     .prologue
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    const/4 v1, 0x0
-
-    iput v1, p0, Landroid/app/Notification;->mTagFlag:I
 
     const/4 v1, -0x1
 
@@ -478,12 +456,6 @@
     move-result v1
 
     iput v1, p0, Landroid/app/Notification;->iconLevel:I
-
-    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
-
-    move-result v1
-
-    iput v1, p0, Landroid/app/Notification;->mTagFlag:I
 
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
@@ -766,10 +738,6 @@
 
     iput v7, v2, Landroid/app/Notification;->flags:I
 
-    iget v7, p0, Landroid/app/Notification;->mTagFlag:I
-
-    iput v7, v2, Landroid/app/Notification;->mTagFlag:I
-
     iget v7, p0, Landroid/app/Notification;->priority:I
 
     iput v7, v2, Landroid/app/Notification;->priority:I
@@ -887,18 +855,6 @@
     .prologue
     .line 670
     const/4 v0, 0x0
-
-    return v0
-.end method
-
-.method public getTag()I
-    .locals 1
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Landroid/app/Notification;->mTagFlag:I
 
     return v0
 .end method
@@ -1037,19 +993,6 @@
     iput-object p4, p0, Landroid/app/Notification;->contentIntent:Landroid/app/PendingIntent;
 
     .line 831
-    return-void
-.end method
-
-.method public setTag(I)V
-    .locals 0
-    .parameter "Tag"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
-
-    .prologue
-    iput p1, p0, Landroid/app/Notification;->mTagFlag:I
-
     return-void
 .end method
 
@@ -1392,9 +1335,6 @@
     .locals 4
     .parameter "parcel"
     .parameter "flags"
-    .annotation build Landroid/annotation/LewaHook;
-        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
-    .end annotation
 
     .prologue
     const/4 v3, 0x1
@@ -1521,10 +1461,6 @@
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
     iget v0, p0, Landroid/app/Notification;->iconLevel:I
-
-    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
-
-    iget v0, p0, Landroid/app/Notification;->mTagFlag:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 

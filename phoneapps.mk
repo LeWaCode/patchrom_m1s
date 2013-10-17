@@ -11,6 +11,9 @@ private-phone-apps := ApplicationsProvider \
 					  UserDictionaryProvider \
 					  VpnDialogs \
 					  WAPPushManager \
-					  Phone \
 					  Gallery2 \
 					  UserDictionaryProvider \
+					  Email \
+					  Calendar \
+					  Phone \
+					  PinyinIME
