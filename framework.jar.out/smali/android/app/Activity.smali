@@ -5264,6 +5264,7 @@
 
     invoke-virtual {p0, v0, v1}, Landroid/app/Activity;->onTitleChanged(Ljava/lang/CharSequence;I)V
 
+    .line 1002
     iget-object v0, p0, Landroid/app/Activity;->mWindow:Landroid/view/Window;
 
     invoke-static {p0, v0}, Landroid/app/Activity$Injector;->setContentViewForeground(Landroid/content/Context;Landroid/view/Window;)V

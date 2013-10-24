@@ -147,6 +147,7 @@
     .locals 1
 
     .prologue
+    .line 767
     new-instance v0, Landroid/app/Notification$1;
 
     invoke-direct {v0}, Landroid/app/Notification$1;-><init>()V

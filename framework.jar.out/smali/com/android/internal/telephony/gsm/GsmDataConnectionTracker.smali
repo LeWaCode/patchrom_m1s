@@ -300,7 +300,7 @@
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v3, "mCdmaHomeOperatorNumeric = "
+    const-string/jumbo v3, "mCdmaHomeOperatorNumeric = "
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -10129,7 +10129,7 @@
 
     move-result-object v9
 
-    const v10, 0x1070013
+    const v10, 0x1070015
 
     invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getStringArray(I)[Ljava/lang/String;
 

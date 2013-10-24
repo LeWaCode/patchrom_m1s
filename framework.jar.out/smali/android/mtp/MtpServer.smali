@@ -63,8 +63,10 @@
     .parameter "storage"
 
     .prologue
+    .line 55
     invoke-direct {p0, p1}, Landroid/mtp/MtpServer;->native_add_storage(Landroid/mtp/MtpStorage;)V
 
+    .line 56
     return-void
 .end method
 
@@ -73,12 +75,14 @@
     .parameter "storage"
 
     .prologue
+    .line 59
     invoke-virtual {p1}, Landroid/mtp/MtpStorage;->getStorageId()I
 
     move-result v0
 
     invoke-direct {p0, v0}, Landroid/mtp/MtpServer;->native_remove_storage(I)V
 
+    .line 60
     return-void
 .end method
 
@@ -98,8 +102,10 @@
     .parameter "handle"
 
     .prologue
+    .line 47
     invoke-direct {p0, p1}, Landroid/mtp/MtpServer;->native_send_object_added(I)V
 
+    .line 48
     return-void
 .end method
 
@@ -108,8 +114,10 @@
     .parameter "handle"
 
     .prologue
+    .line 51
     invoke-direct {p0, p1}, Landroid/mtp/MtpServer;->native_send_object_removed(I)V
 
+    .line 52
     return-void
 .end method
 

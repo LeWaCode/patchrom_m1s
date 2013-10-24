@@ -8735,6 +8735,7 @@
 
     invoke-virtual {v0, v1, v4, v2, v3}, Landroid/widget/TextView;->sendOnTextChanged(Ljava/lang/CharSequence;III)V
 
+    .line 3551
     :cond_lewa_0
     const/4 v4, 0x0
 

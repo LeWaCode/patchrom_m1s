@@ -175,6 +175,7 @@
 
     move-result-object v1
 
+    .line 79
     .local v1, adapter:Landroid/widget/ArrayAdapter;,"Landroid/widget/ArrayAdapter<Ljava/lang/CharSequence;>;"
     const v3, 0x1090009
 

@@ -513,7 +513,11 @@
     .line 2363
     monitor-enter p0
 
-    .line 2364
+    :try_start_0
+    iget-object v3, p0, Lcom/android/server/PowerManagerService$ScreenBrightnessAnimator;->this$0:Lcom/android/server/PowerManagerService;
+
+    invoke-static {v3, p3, p1}, Lcom/android/server/PowerManagerService$Injector;->_setButtonBrightness(Lcom/android/server/PowerManagerService;II)V
+
     and-int/lit8 v3, p3, 0x2
 
     if-nez v3, :cond_2
@@ -524,7 +528,6 @@
     if-eqz v2, :cond_0
 
     .line 2367
-    :try_start_0
     iget-object v2, p0, Lcom/android/server/PowerManagerService$ScreenBrightnessAnimator;->this$0:Lcom/android/server/PowerManagerService;
 
     #getter for: Lcom/android/server/PowerManagerService;->mButtonLight:Lcom/android/server/LightsService$Light;
@@ -532,13 +535,9 @@
 
     move-result-object v2
 
-    invoke-virtual {v2, p1}, Lcom/android/server/LightsService$Light;->setBrightness(I)V
+    #invoke-virtual {v2, p1}, Lcom/android/server/LightsService$Light;->setBrightness(I)V
 
     :cond_0
-    iget-object v2, p0, Lcom/android/server/PowerManagerService$ScreenBrightnessAnimator;->this$0:Lcom/android/server/PowerManagerService;
-
-    invoke-static {v2, p3, p1}, Lcom/android/server/PowerManagerService$Injector;->_setButtonBrightness(Lcom/android/server/PowerManagerService;II)V
-
     and-int/lit8 v2, p3, 0x8
 
     if-eqz v2, :cond_1

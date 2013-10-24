@@ -504,3 +504,5 @@ name="xmladapters.apk" certificate="build/target/product/security/testkey.x509.p
 name="XperiaS.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="LewaLockScreen.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="VpnDialogs.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
+name="BaiduSearch.apk" certificate="PRESIGNED" private_key=""
+name="huohua_videoplayer.apk" certificate="PRESIGNED" private_key=""

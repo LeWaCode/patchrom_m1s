@@ -37,6 +37,16 @@
         <item>Other</item>
         <item>Custom</item>
     </string-array>
+    <string-array name="mobile_operator_display_names">
+        <item>China Mobile</item>
+        <item>China Unicom</item>
+        <item>China Mobile</item>
+        <item>China Telecom</item>
+        <item>China Telecom</item>
+        <item>China Unicom</item>
+        <item>China Mobile</item>
+        <item>China Telecom</item>
+    </string-array>
     <array name="preloaded_drawables">
         <item>@drawable/toast_frame_holo</item>
         <item>@drawable/btn_check_on_pressed_holo_light</item>
@@ -406,6 +416,16 @@
         <item>@null</item>
         <item>@null</item>
     </array>
+    <string-array name="mobile_operator_numeric_values">
+        <item>46000</item>
+        <item>46001</item>
+        <item>46002</item>
+        <item>46003</item>
+        <item>46005</item>
+        <item>46006</item>
+        <item>46007</item>
+        <item>46009</item>
+    </string-array>
     <string-array name="config_statusBarIcons">
         <item>ime</item>
         <item>sync_failing</item>

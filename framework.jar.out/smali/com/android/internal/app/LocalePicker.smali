@@ -101,7 +101,7 @@
 
     .line 92
     .local v13, locales:[Ljava/lang/String;
-    const v20, 0x1070007
+    const v20, 0x1070008
 
     move-object/from16 v0, v16
 
@@ -113,7 +113,7 @@
 
     .line 93
     .local v18, specialLocaleCodes:[Ljava/lang/String;
-    const v20, 0x1070008
+    const v20, 0x1070009
 
     move-object/from16 v0, v16
 

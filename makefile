@@ -8,20 +8,23 @@ local-zip-file     := stockrom.zip
 # The output zip file of LEWA rom, the default is porting_lewa.zip if not specified
 local-out-zip-file := lewa_m1s.zip
 
-local-lewa-device := M1S_JB
-
 # the location for local-ota to save target-file
 local-previous-target-dir := ~/workspace/ota_base/m1s_4.1
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps :=
+local-modified-apps := Bluetooth
 
 local-modified-jars :=
 
 # All apks from LEWA
-local-lewa-removed-apps := Phone LewaIntercept LatinIME
+local-lewa-removed-apps := Phone LewaIntercept LatinIME Bluetooth
 
-local-lewa-modified-apps :=
+local-lewa-modified-apps := 
+
+# set ro.sys.partner in build.prop for lewa partner
+local-lewa-partner := Lewa
+
+local-lewa-device := M1S_JB
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
 # Default configrations are HDPI for ics branch and XHDPI for jellybean branch
@@ -46,4 +49,3 @@ updater := $(ZIP_DIR)/META-INF/com/google/android/updater-script
 pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 
 local-pre-zip-misc: add-prebuilt-lewa-sqlite-library
-	cp other/build.prop $(ZIP_DIR)/system/build.prop

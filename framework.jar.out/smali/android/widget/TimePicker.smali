@@ -166,6 +166,7 @@
     .local v2, inflater:Landroid/view/LayoutInflater;
     invoke-virtual {v2, v3, p0, v8}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
 
+    .line 147
     const v4, 0x1020349
 
     invoke-static {p1, v4}, Landroid/widget/TimePicker$Injector;->getHourResourceId(Landroid/content/Context;I)I

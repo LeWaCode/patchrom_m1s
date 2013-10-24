@@ -700,6 +700,15 @@
 
 
 # virtual methods
+.method public answerDualRingingCall(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 854
+    return-void
+.end method
+
 .method public answerRingingCall()V
     .locals 1
 
@@ -763,6 +772,25 @@
     goto :goto_0
 .end method
 
+.method public callDual(Ljava/lang/String;I)V
+    .locals 0
+    .parameter "number"
+    .parameter "sub"
+
+    .prologue
+    .line 857
+    return-void
+.end method
+
+.method public cancelDualMissedCallsNotification(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 860
+    return-void
+.end method
+
 .method public cancelMissedCallsNotification()V
     .locals 1
 
@@ -779,6 +807,21 @@
 
     .line 584
     return-void
+.end method
+
+.method public cwControl(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)Z
+    .locals 1
+    .parameter "sub"
+    .parameter "s1"
+    .parameter "s2"
+    .parameter "s4"
+    .parameter "s3"
+
+    .prologue
+    .line 863
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 .method public dial(Ljava/lang/String;)V
@@ -843,6 +886,16 @@
     goto :goto_0
 .end method
 
+.method public dialDual(Ljava/lang/String;I)V
+    .locals 0
+    .parameter "number"
+    .parameter "sub"
+
+    .prologue
+    .line 867
+    return-void
+.end method
+
 .method public disableApnType(Ljava/lang/String;)I
     .locals 1
     .parameter "type"
@@ -891,6 +944,38 @@
     return v1
 .end method
 
+.method public disableDualApnType(Ljava/lang/String;I)I
+    .locals 1
+    .parameter "type"
+    .parameter "sub"
+
+    .prologue
+    .line 870
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public disableDualDataConnectivity(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 874
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public disableDualLocationUpdates(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 878
+    return-void
+.end method
+
 .method public disableLocationUpdates()V
     .locals 3
 
@@ -911,6 +996,17 @@
 
     .line 624
     return-void
+.end method
+
+.method public disableQos(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 881
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 .method public enableApnType(Ljava/lang/String;)I
@@ -959,6 +1055,38 @@
     return v3
 .end method
 
+.method public enableDualApnType(Ljava/lang/String;I)I
+    .locals 1
+    .parameter "type"
+    .parameter "sub"
+
+    .prologue
+    .line 885
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public enableDualDataConnectivity(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 889
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public enableDualLocationUpdates(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 893
+    return-void
+.end method
+
 .method public enableLocationUpdates()V
     .locals 3
 
@@ -1004,6 +1132,28 @@
     move-result v0
 
     return v0
+.end method
+
+.method public endDualCall(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 899
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public execRuimEsnOp(Z)Ljava/lang/String;
+    .locals 1
+    .parameter "exec"
+
+    .prologue
+    .line 903
+    const-string v0, ""
+
+    return-object v0
 .end method
 
 .method public getActivePhoneType()I
@@ -1126,6 +1276,16 @@
     return-object v0
 .end method
 
+.method public getCdmaNeedsProvisioning()Z
+    .locals 1
+
+    .prologue
+    .line 907
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public getCellLocation()Landroid/os/Bundle;
     .locals 6
 
@@ -1211,6 +1371,127 @@
     invoke-static {v0}, Lcom/android/internal/telephony/DefaultPhoneNotifier;->convertDataState(Lcom/android/internal/telephony/Phone$DataState;)I
 
     move-result v0
+
+    return v0
+.end method
+
+.method public getDualActivePhoneType(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 911
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualCallState(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 915
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualCellLocation(I)Landroid/os/Bundle;
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 919
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method public getDualDataActivity(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 923
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualDataState(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 927
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualNeighboringCellInfo(I)Ljava/util/List;
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 931
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method public getDualNetworkType(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 935
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualPbTotalParamOnIcc(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 939
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualSmsTotalParamOnIcc(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 943
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getDualVoiceMessageCount(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 947
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getIccFdnEnabled(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 951
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -1349,6 +1630,49 @@
     return v0
 .end method
 
+.method public getPbTotalParamOnIcc()I
+    .locals 1
+
+    .prologue
+    .line 955
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getPinPukValidCount(II)I
+    .locals 1
+    .parameter "country"
+    .parameter "sub"
+
+    .prologue
+    .line 959
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getQosStatus(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 963
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getSmsTotalParamOnIcc()I
+    .locals 1
+
+    .prologue
+    .line 967
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public getSmscAddress()Ljava/lang/String;
     .locals 1
 
@@ -1383,6 +1707,18 @@
     return v0
 .end method
 
+.method public handleDualPinMmi(Ljava/lang/String;I)Z
+    .locals 1
+    .parameter "string"
+    .parameter "sub"
+
+    .prologue
+    .line 975
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public handlePinMmi(Ljava/lang/String;)Z
     .locals 1
     .parameter "dialString"
@@ -1403,6 +1739,17 @@
     invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
 
     move-result v0
+
+    return v0
+.end method
+
+.method public hasDualIccCard(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 971
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -1435,6 +1782,72 @@
     invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->isDataConnectivityPossible()Z
 
     move-result v0
+
+    return v0
+.end method
+
+.method public isDualDataConnectivityPossible(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 979
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isDualIdle(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 983
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isDualOffhook(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 987
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isDualRadioOn(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 991
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isDualRinging(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 995
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isDualSimPinEnabled(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 999
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -1521,6 +1934,17 @@
     goto :goto_0
 .end method
 
+.method public isRadioOnOnSubscription(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 1003
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public isRinging()Z
     .locals 2
 
@@ -1580,6 +2004,61 @@
     return v0
 .end method
 
+.method public resumeQos(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 1018
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public sendCommandToRil(ILjava/lang/String;)V
+    .locals 0
+    .parameter "sub"
+    .parameter "string"
+
+    .prologue
+    .line 1022
+    return-void
+.end method
+
+.method public sendOemRilRequestRaw([B[BI)I
+    .locals 1
+    .parameter "b"
+    .parameter "bt"
+    .parameter "sub"
+
+    .prologue
+    .line 1025
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public setDualRadio(ZI)Z
+    .locals 1
+    .parameter "enable"
+    .parameter "sub"
+
+    .prologue
+    .line 1029
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public setGpsOne(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 1033
+    return-void
+.end method
+
 .method public setRadio(Z)Z
     .locals 3
     .parameter "turnOn"
@@ -1624,6 +2103,30 @@
     goto :goto_0
 .end method
 
+.method public setRadioOnSubscription(ZI)Z
+    .locals 1
+    .parameter "enable"
+    .parameter "sub"
+
+    .prologue
+    .line 1010
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public setRasConnectFunction(II)Z
+    .locals 1
+    .parameter "sub"
+    .parameter "type"
+
+    .prologue
+    .line 1014
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public setSmscAddress(Ljava/lang/String;)Z
     .locals 1
     .parameter "address"
@@ -1664,6 +2167,38 @@
     return v0
 .end method
 
+.method public showDualCallScreen(I)Z
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 1051
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public showDualCallScreenWithDialpad(ZI)Z
+    .locals 1
+    .parameter "enable"
+    .parameter "sub"
+
+    .prologue
+    .line 1055
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public silenceDualRinger(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 1059
+    return-void
+.end method
+
 .method public silenceRinger()V
     .locals 1
 
@@ -1678,6 +2213,51 @@
 
     .line 392
     return-void
+.end method
+
+.method public spcpaReboot()V
+    .locals 0
+
+    .prologue
+    .line 1036
+    return-void
+.end method
+
+.method public spcpaSendCmd(ILjava/lang/String;)Ljava/lang/String;
+    .locals 1
+    .parameter "sub"
+    .parameter "string"
+
+    .prologue
+    .line 1039
+    const-string v0, ""
+
+    return-object v0
+.end method
+
+.method public supplyDualPin(Ljava/lang/String;I)Z
+    .locals 1
+    .parameter "string"
+    .parameter "sub"
+
+    .prologue
+    .line 1043
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public supplyDualPuk(Ljava/lang/String;Ljava/lang/String;I)Z
+    .locals 1
+    .parameter "string"
+    .parameter "s"
+    .parameter "sub"
+
+    .prologue
+    .line 1047
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 .method public supplyPin(Ljava/lang/String;)Z
@@ -1745,6 +2325,71 @@
     return v1
 .end method
 
+.method public suspendQos(I)I
+    .locals 1
+    .parameter "sub"
+
+    .prologue
+    .line 1062
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public swapCall()V
+    .locals 0
+
+    .prologue
+    .line 1066
+    return-void
+.end method
+
+.method public switchNetModeFromEngmode(Ljava/lang/String;I)V
+    .locals 0
+    .parameter "string"
+    .parameter "sub"
+
+    .prologue
+    .line 1069
+    return-void
+.end method
+
+.method public telephonyDualIoControl(ILandroid/os/Bundle;Landroid/os/Bundle;I)Z
+    .locals 1
+    .parameter "sub"
+    .parameter "bundle"
+    .parameter "b"
+    .parameter "io"
+
+    .prologue
+    .line 1072
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public telephonyIoControl(ILandroid/os/Bundle;Landroid/os/Bundle;)Z
+    .locals 1
+    .parameter "sub"
+    .parameter "bundle"
+    .parameter "b"
+
+    .prologue
+    .line 1076
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public toggleDualRadioOnOff(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 1080
+    return-void
+.end method
+
 .method public toggleRadioOnOff()V
     .locals 2
 
@@ -1774,6 +2419,15 @@
     const/4 v0, 0x0
 
     goto :goto_0
+.end method
+
+.method public updateDualServiceLocation(I)V
+    .locals 0
+    .parameter "sub"
+
+    .prologue
+    .line 1083
+    return-void
 .end method
 
 .method public updateServiceLocation()V

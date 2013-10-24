@@ -1253,6 +1253,7 @@
 
     invoke-virtual {v8, v0}, Landroid/text/Layout;->draw(Landroid/graphics/Canvas;)V
 
+    .line 771
     :cond_1
     invoke-virtual/range {p1 .. p1}, Landroid/graphics/Canvas;->restore()V
 

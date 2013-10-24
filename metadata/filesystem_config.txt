@@ -101,7 +101,7 @@ system/bin/df 0 2000 755
 system/bin/dhcpcd 0 2000 755
 system/bin/diag_dci_client 0 2000 755
 system/bin/diag_klog 0 2000 755
-system/bin/diag_mdlog 0 2000 755
+system/bin/diag_mdlog 0 2000 4755
 system/bin/diag_socket_log 0 2000 755
 system/bin/diag_uart_log 0 2000 755
 system/bin/dmesg 0 2000 755
@@ -281,7 +281,7 @@ system/bin/touch 0 2000 755
 system/bin/uiautomator 0 2000 755
 system/bin/umount 0 2000 755
 system/bin/uptime 0 2000 755
-system/bin/usbhub 0 2000 755
+system/bin/usbhub 0 2000 4755
 system/bin/usbhub_init 0 2000 755
 system/bin/v4l2-qcamera-app 0 2000 755
 system/bin/vdc 0 2000 755
@@ -317,6 +317,7 @@ system/etc/event-log-tags 0 0 644
 system/etc/fallback_fonts-ja.xml 0 0 644
 system/etc/fallback_fonts.xml 0 0 644
 system/etc/firmware 0 0 755
+system/etc/firmware/amss.mbn 1000 1000 771
 system/etc/firmware/bcm4329.hcd 0 0 644
 system/etc/firmware/bcm4330.hcd 0 0 644
 system/etc/firmware/dsps_fluid.b00 0 0 644
@@ -1341,4 +1342,3 @@ system/xbin/showslab 0 2000 755
 system/xbin/sqlite3 0 2000 755
 system/xbin/strace 0 2000 755
 system/xbin/su 0 0 6755
-system/xbin/tcpdump 0 0 6755

@@ -3114,6 +3114,10 @@
     .line 2780
     .end local v3           #steps:I
     :cond_2
+    invoke-static {p0, v0}, Lcom/android/server/PowerManagerService$Injector;->adjustButtonValue(Lcom/android/server/PowerManagerService;I)I
+
+    move-result v0
+
     iget v4, p0, Lcom/android/server/PowerManagerService;->mButtonBrightnessOverride:I
 
     if-gez v4, :cond_3
@@ -3125,8 +3129,6 @@
 
     .line 2783
     :cond_3
-    invoke-static {p0, v0}, Lcom/android/server/PowerManagerService$Injector;->setButtonValue(Lcom/android/server/PowerManagerService;I)V
-
     iget v4, p0, Lcom/android/server/PowerManagerService;->mButtonBrightnessOverride:I
 
     if-ltz v4, :cond_4
@@ -9384,7 +9386,7 @@
     if-eqz v1, :cond_0
 
     .line 652
-    const v1, 0x1070027
+    const v1, 0x1070029
 
     invoke-virtual {v7, v1}, Landroid/content/res/Resources;->getIntArray(I)[I
 
@@ -9393,7 +9395,7 @@
     iput-object v1, p0, Lcom/android/server/PowerManagerService;->mAutoBrightnessLevels:[I
 
     .line 654
-    const v1, 0x1070028
+    const v1, 0x107002a
 
     invoke-virtual {v7, v1}, Landroid/content/res/Resources;->getIntArray(I)[I
 
@@ -9401,6 +9403,7 @@
 
     iput-object v1, p0, Lcom/android/server/PowerManagerService;->mLcdBacklightValues:[I
 
+    .line 656
     const v1, 0x90d0004
 
     invoke-virtual {v7, v1}, Landroid/content/res/Resources;->getIntArray(I)[I
@@ -9410,7 +9413,7 @@
     iput-object v1, p0, Lcom/android/server/PowerManagerService;->mButtonBacklightValues:[I
 
     .line 658
-    const v1, 0x107002a
+    const v1, 0x107002c
 
     invoke-virtual {v7, v1}, Landroid/content/res/Resources;->getIntArray(I)[I
 

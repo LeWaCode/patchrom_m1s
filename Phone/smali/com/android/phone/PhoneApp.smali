@@ -2592,7 +2592,7 @@
     invoke-virtual {v0, v10}, Landroid/media/AudioManager;->registerMediaButtonEventReceiverForCalls(Landroid/content/ComponentName;)V
 
     .line 619
-    const v10, 0x7f06000b
+    const v10, 0x7f06000d
 
     const/4 v11, 0x0
 

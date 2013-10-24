@@ -158,6 +158,7 @@
 
     invoke-direct {p0, p1, p2, v0}, Landroid/widget/Spinner;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
+    .line 119
     return-void
 .end method
 
@@ -176,6 +177,7 @@
 
     invoke-direct {p0, p1, p2, p3, v0}, Landroid/widget/Spinner;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;II)V
 
+    .line 135
     return-void
 .end method
 
@@ -204,6 +206,7 @@
 
     iput-object v4, p0, Landroid/widget/Spinner;->mTempRect:Landroid/graphics/Rect;
 
+    .line 157
     invoke-static {p1, p2}, Landroid/widget/Spinner$Injector;->isSpinnerV5Style(Landroid/content/Context;Landroid/util/AttributeSet;)Z
 
     move-result v4
@@ -363,6 +366,7 @@
 
     nop
 
+    .line 164
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0

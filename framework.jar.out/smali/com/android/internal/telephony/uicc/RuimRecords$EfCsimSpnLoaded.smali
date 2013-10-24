@@ -27,7 +27,7 @@
     .parameter
 
     .prologue
-    .line 300
+    .line 304
     iput-object p1, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +41,7 @@
     .parameter "x1"
 
     .prologue
-    .line 300
+    .line 304
     invoke-direct {p0, p1}, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;-><init>(Lcom/android/internal/telephony/uicc/RuimRecords;)V
 
     return-void
@@ -53,7 +53,7 @@
     .locals 1
 
     .prologue
-    .line 302
+    .line 306
     const-string v0, "EF_CSIM_SPN"
 
     return-object v0
@@ -70,7 +70,7 @@
 
     const/4 v8, 0x0
 
-    .line 306
+    .line 310
     iget-object v6, p1, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v6, [B
@@ -79,7 +79,7 @@
 
     check-cast v0, [B
 
-    .line 307
+    .line 311
     .local v0, data:[B
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
@@ -107,7 +107,7 @@
 
     invoke-virtual {v6, v10}, Lcom/android/internal/telephony/uicc/RuimRecords;->log(Ljava/lang/String;)V
 
-    .line 311
+    .line 315
     iget-object v10, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
     aget-byte v6, v0, v8
@@ -121,20 +121,20 @@
     :goto_0
     iput-boolean v6, v10, Lcom/android/internal/telephony/uicc/RuimRecords;->mCsimSpnDisplayCondition:Z
 
-    .line 313
+    .line 317
     aget-byte v2, v0, v7
 
-    .line 314
+    .line 318
     .local v2, encoding:I
     const/4 v6, 0x2
 
     aget-byte v3, v0, v6
 
-    .line 315
+    .line 319
     .local v3, language:I
     new-array v5, v9, [B
 
-    .line 316
+    .line 320
     .local v5, spnData:[B
     const/4 v7, 0x3
 
@@ -147,7 +147,7 @@
     :goto_1
     invoke-static {v0, v7, v5, v8, v6}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 319
+    .line 323
     const/4 v4, 0x0
 
     .local v4, numBytes:I
@@ -156,7 +156,7 @@
 
     if-ge v4, v6, :cond_0
 
-    .line 320
+    .line 324
     aget-byte v6, v5, v4
 
     and-int/lit16 v6, v6, 0xff
@@ -165,18 +165,18 @@
 
     if-ne v6, v7, :cond_3
 
-    .line 323
+    .line 327
     :cond_0
     if-nez v4, :cond_4
 
-    .line 324
+    .line 328
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
     const-string v7, ""
 
     iput-object v7, v6, Lcom/android/internal/telephony/uicc/RuimRecords;->spn:Ljava/lang/String;
 
-    .line 352
+    .line 356
     :goto_3
     return-void
 
@@ -187,7 +187,7 @@
     :cond_1
     move v6, v8
 
-    .line 311
+    .line 315
     goto :goto_0
 
     .restart local v2       #encoding:I
@@ -196,21 +196,21 @@
     :cond_2
     move v6, v9
 
-    .line 316
+    .line 320
     goto :goto_1
 
-    .line 319
+    .line 323
     .restart local v4       #numBytes:I
     :cond_3
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_2
 
-    .line 328
+    .line 332
     :cond_4
     packed-switch v2, :pswitch_data_0
 
-    .line 344
+    .line 348
     :pswitch_0
     :try_start_0
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
@@ -221,7 +221,7 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 349
+    .line 353
     :goto_4
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
@@ -249,7 +249,7 @@
 
     invoke-virtual {v6, v7}, Lcom/android/internal/telephony/uicc/RuimRecords;->log(Ljava/lang/String;)V
 
-    .line 350
+    .line 354
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
     new-instance v7, Ljava/lang/StringBuilder;
@@ -276,7 +276,7 @@
 
     invoke-virtual {v6, v7}, Lcom/android/internal/telephony/uicc/RuimRecords;->log(Ljava/lang/String;)V
 
-    .line 351
+    .line 355
     const-string v6, "gsm.sim.operator.alpha"
 
     iget-object v7, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
@@ -287,7 +287,7 @@
 
     goto :goto_3
 
-    .line 331
+    .line 335
     :pswitch_1
     :try_start_1
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
@@ -306,11 +306,11 @@
 
     goto :goto_4
 
-    .line 346
+    .line 350
     :catch_0
     move-exception v1
 
-    .line 347
+    .line 351
     .local v1, e:Ljava/lang/Exception;
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
@@ -336,7 +336,7 @@
 
     goto :goto_4
 
-    .line 335
+    .line 339
     .end local v1           #e:Ljava/lang/Exception;
     :pswitch_2
     :try_start_2
@@ -356,7 +356,7 @@
 
     goto :goto_4
 
-    .line 338
+    .line 342
     :pswitch_3
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
@@ -372,7 +372,7 @@
 
     goto/16 :goto_4
 
-    .line 341
+    .line 345
     :pswitch_4
     iget-object v6, p0, Lcom/android/internal/telephony/uicc/RuimRecords$EfCsimSpnLoaded;->this$0:Lcom/android/internal/telephony/uicc/RuimRecords;
 
@@ -390,7 +390,7 @@
 
     goto/16 :goto_4
 
-    .line 328
+    .line 332
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_1

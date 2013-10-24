@@ -1050,6 +1050,7 @@
 
     iput-object v4, p0, Lcom/android/internal/widget/ActionBarView;->mTitleUpView:Landroid/view/View;
 
+    .line 769
     invoke-direct {p0}, Lcom/android/internal/widget/ActionBarView;->setTitleListener()V
 
     iget v4, p0, Lcom/android/internal/widget/ActionBarView;->mTitleStyleRes:I
@@ -1185,6 +1186,7 @@
 
     invoke-direct {p0}, Lcom/android/internal/widget/ActionBarView;->setTitleStatus()V
 
+    .line 794
     .end local v0           #homeAsUp:Z
     .end local v1           #inflater:Landroid/view/LayoutInflater;
     .end local v2           #showHome:Z
@@ -3999,6 +4001,7 @@
 
     move-result v5
 
+    .line 983
     const/16 v40, 0x0
 
     move-object/from16 v0, p0
@@ -4968,6 +4971,7 @@
 
     invoke-direct {p0}, Lcom/android/internal/widget/ActionBarView;->setTitleStatus()V
 
+    .line 610
     .end local v1           #homeAsUp:Z
     :cond_4
     and-int/lit8 v6, v0, 0x10
@@ -5562,6 +5566,7 @@
 
     iput-object v4, p0, Lcom/android/internal/widget/ActionBarView;->mActionMenuPresenter:Lcom/android/internal/view/menu/ActionMenuPresenter;
 
+    .line 414
     iget-object v4, p0, Lcom/android/internal/widget/ActionBarView;->mContext:Landroid/content/Context;
 
     invoke-direct {p0, v4}, Lcom/android/internal/widget/ActionBarView;->newMenuPresenterExt(Landroid/content/Context;)Lcom/android/internal/view/menu/ActionMenuPresenter;

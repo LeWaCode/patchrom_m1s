@@ -1,0 +1,251 @@
+.class Lcom/android/bluetooth/thermometer/BluetoothThermometerServices$1;
+.super Landroid/os/Handler;
+.source "BluetoothThermometerServices.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic this$0:Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;
+
+
+# direct methods
+.method constructor <init>(Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;)V
+    .locals 0
+    .parameter
+
+    .prologue
+    .line 192
+    iput-object p1, p0, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices$1;->this$0:Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;
+
+    invoke-direct {p0}, Landroid/os/Handler;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public handleMessage(Landroid/os/Message;)V
+    .locals 8
+    .parameter "msg"
+
+    .prologue
+    .line 195
+    iget v5, p1, Landroid/os/Message;->what:I
+
+    packed-switch v5, :pswitch_data_0
+
+    .line 225
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 197
+    :pswitch_0
+    const-string v5, "BluetoothThermometerServices"
+
+    const-string v6, "Received GATT_SERVICE_STARTED_UUID message"
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 200
+    :pswitch_1
+    const-string v5, "BluetoothThermometerServices"
+
+    const-string v6, "Received GATT_SERVICE_STARTED_OBJ message"
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 201
+    invoke-virtual {p1}, Landroid/os/Message;->getData()Landroid/os/Bundle;
+
+    move-result-object v5
+
+    const-string v6, "ACTION_GATT_SERVICE_EXTRA_OBJ"
+
+    invoke-virtual {v5, v6}, Landroid/os/Bundle;->getStringArrayList(Ljava/lang/String;)Ljava/util/ArrayList;
+
+    move-result-object v0
+
+    .line 203
+    .local v0, gattDataList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v3
+
+    .line 204
+    .local v3, size:I
+    const-string v5, "BluetoothThermometerServices"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "GATT Service data list len : "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 206
+    const/4 v5, 0x0
+
+    invoke-virtual {v0, v5}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/lang/String;
+
+    .line 207
+    .local v1, selectedServiceObjPath:Ljava/lang/String;
+    const-string v5, "BluetoothThermometerServices"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "GATT Service path array obj : "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 209
+    add-int/lit8 v5, v3, -0x1
+
+    invoke-virtual {v0, v5}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, Ljava/lang/String;
+
+    .line 210
+    .local v4, uuidStr:Ljava/lang/String;
+    const-string v5, "BluetoothThermometerServices"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "GATT Service uuidStr : "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 212
+    invoke-static {v4}, Landroid/os/ParcelUuid;->fromString(Ljava/lang/String;)Landroid/os/ParcelUuid;
+
+    move-result-object v2
+
+    .line 213
+    .local v2, selectedUUID:Landroid/os/ParcelUuid;
+    const-string v5, "BluetoothThermometerServices"
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, "ParcelUUID rep of selectedUUID : "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 215
+    iget-object v5, p0, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices$1;->this$0:Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;
+
+    #calls: Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->isThermometerProfileService(Landroid/os/ParcelUuid;)Z
+    invoke-static {v5, v2}, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->access$000(Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;Landroid/os/ParcelUuid;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    .line 216
+    const-string v5, "BluetoothThermometerServices"
+
+    const-string v6, "Proceed to creating thermometer profile gatt service"
+
+    invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 217
+    sget-object v5, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->mDevice:Lcom/android/bluetooth/thermometer/BluetoothThermometerDevice;
+
+    iget-object v5, v5, Lcom/android/bluetooth/thermometer/BluetoothThermometerDevice;->uuidObjPathMap:Ljava/util/HashMap;
+
+    invoke-virtual {v5, v2, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 218
+    sget-object v5, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->mDevice:Lcom/android/bluetooth/thermometer/BluetoothThermometerDevice;
+
+    iget-object v5, v5, Lcom/android/bluetooth/thermometer/BluetoothThermometerDevice;->objPathUuidMap:Ljava/util/HashMap;
+
+    invoke-virtual {v5, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 219
+    iget-object v5, p0, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices$1;->this$0:Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;
+
+    #calls: Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->getBluetoothGattService(Ljava/lang/String;Landroid/os/ParcelUuid;)V
+    invoke-static {v5, v1, v2}, Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;->access$100(Lcom/android/bluetooth/thermometer/BluetoothThermometerServices;Ljava/lang/String;Landroid/os/ParcelUuid;)V
+
+    goto/16 :goto_0
+
+    .line 195
+    :pswitch_data_0
+    .packed-switch 0x0
+        :pswitch_0
+        :pswitch_1
+    .end packed-switch
+.end method

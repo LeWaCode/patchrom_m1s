@@ -14,6 +14,5 @@ private-phone-apps := ApplicationsProvider \
 					  Gallery2 \
 					  UserDictionaryProvider \
 					  Email \
-					  Calendar \
-					  Phone \
-					  PinyinIME
+					  LatinIME \
+					  Phone

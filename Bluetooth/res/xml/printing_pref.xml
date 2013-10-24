@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Printer Preference">
+        <EditTextPreference android:title="Number of Copies" android:key="text_copies" android:summary="Click to pop up a field for entry" android:dialogTitle="Enter the number(0~9)of pages to print" />
+        <ListPreference android:entries="@array/numberup" android:title="Pages per Side" android:key="list_numberup" android:summary="Click to pop up a list to choose from" android:dialogTitle="Choose pages per side" android:entryValues="@array/numberup_val" />
+        <ListPreference android:entries="@array/orientation" android:title="Orientation" android:key="list_orient" android:summary="Click to pop up a list to choose from" android:dialogTitle="Choose orientation" android:entryValues="@array/orientation_val" />
+        <ListPreference android:entries="@array/sides" android:title="Sides" android:key="list_sides" android:summary="Click to pop up a list to choose from" android:dialogTitle="Choose a number of copies to print" android:entryValues="@array/sides_val" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Printing Start">
+        <PreferenceScreen android:title="Printing Start" android:key="print" android:summary="Click to start Printing now" />
+    </PreferenceCategory>
+</PreferenceScreen>

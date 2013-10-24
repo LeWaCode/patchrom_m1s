@@ -208,6 +208,7 @@
 
     move-result-object v0
 
+    .line 105
     .local v0, checkableView:Landroid/view/View;
     if-eqz v0, :cond_0
 

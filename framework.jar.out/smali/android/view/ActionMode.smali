@@ -137,6 +137,18 @@
 .end method
 
 .method public abstract setCustomView(Landroid/view/View;)V
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+.end method
+
+.method public abstract setRightActionButtonDrawable(Landroid/graphics/drawable/Drawable;)V
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+.end method
+
+.method public abstract setRightActionButtonResource(I)V
 .end method
 
 .method public setSelectionMode(I)V
