@@ -2,7 +2,6 @@ local-phone-apps = $(private-phone-apps)
 
 private-phone-apps := ApplicationsProvider \
 					  BackupRestoreConfirmation \
-					  Browser \
 					  CertInstaller \
 					  DefaultContainerService \
 					  KeyChain \
