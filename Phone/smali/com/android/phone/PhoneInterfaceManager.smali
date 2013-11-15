@@ -701,11 +701,19 @@
 
 # virtual methods
 .method public answerDualRingingCall(I)V
-    .locals 0
+    .locals 1
     .parameter "sub"
 
     .prologue
-    .line 854
+    .line 858
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 859
+    const/4 v0, 0x4
+
+    invoke-direct {p0, v0}, Lcom/android/phone/PhoneInterfaceManager;->sendRequestAsync(I)V
+
+    .line 860
     return-void
 .end method
 
@@ -773,21 +781,69 @@
 .end method
 
 .method public callDual(Ljava/lang/String;I)V
-    .locals 0
+    .locals 4
     .parameter "number"
     .parameter "sub"
 
     .prologue
-    .line 857
+    .line 868
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceCallPermission()V
+
+    .line 870
+    invoke-direct {p0, p1}, Lcom/android/phone/PhoneInterfaceManager;->createTelUrl(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 871
+    .local v1, url:Ljava/lang/String;
+    if-nez v1, :cond_0
+
+    .line 878
+    :goto_0
     return-void
+
+    .line 875
+    :cond_0
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v2, "android.intent.action.CALL"
+
+    invoke-static {v1}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v3
+
+    invoke-direct {v0, v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+
+    .line 876
+    .local v0, intent:Landroid/content/Intent;
+    const/high16 v2, 0x1000
+
+    invoke-virtual {v0, v2}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    .line 877
+    iget-object v2, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    invoke-virtual {v2, v0}, Lcom/android/phone/PhoneApp;->startActivity(Landroid/content/Intent;)V
+
+    goto :goto_0
 .end method
 
 .method public cancelDualMissedCallsNotification(I)V
-    .locals 0
+    .locals 1
     .parameter "sub"
 
     .prologue
-    .line 860
+    .line 881
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 882
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    iget-object v0, v0, Lcom/android/phone/PhoneApp;->notificationMgr:Lcom/android/phone/NotificationMgr;
+
+    invoke-virtual {v0}, Lcom/android/phone/NotificationMgr;->cancelMissedCallNotification()V
+
+    .line 883
     return-void
 .end method
 
@@ -818,7 +874,7 @@
     .parameter "s3"
 
     .prologue
-    .line 863
+    .line 886
     const/4 v0, 0x0
 
     return v0
@@ -887,13 +943,66 @@
 .end method
 
 .method public dialDual(Ljava/lang/String;I)V
-    .locals 0
+    .locals 5
     .parameter "number"
     .parameter "sub"
 
     .prologue
-    .line 867
+    .line 895
+    invoke-direct {p0, p1}, Lcom/android/phone/PhoneInterfaceManager;->createTelUrl(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 896
+    .local v2, url:Ljava/lang/String;
+    if-nez v2, :cond_1
+
+    .line 907
+    :cond_0
+    :goto_0
     return-void
+
+    .line 901
+    :cond_1
+    iget-object v3, p0, Lcom/android/phone/PhoneInterfaceManager;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    invoke-virtual {v3}, Lcom/android/internal/telephony/CallManager;->getState()Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v1
+
+    .line 902
+    .local v1, state:Lcom/android/internal/telephony/Phone$State;
+    sget-object v3, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
+
+    if-eq v1, v3, :cond_0
+
+    sget-object v3, Lcom/android/internal/telephony/Phone$State;->RINGING:Lcom/android/internal/telephony/Phone$State;
+
+    if-eq v1, v3, :cond_0
+
+    .line 903
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v3, "android.intent.action.DIAL"
+
+    invoke-static {v2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v4
+
+    invoke-direct {v0, v3, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+
+    .line 904
+    .local v0, intent:Landroid/content/Intent;
+    const/high16 v3, 0x1000
+
+    invoke-virtual {v0, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+
+    .line 905
+    iget-object v3, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    invoke-virtual {v3, v0}, Lcom/android/phone/PhoneApp;->startActivity(Landroid/content/Intent;)V
+
+    goto :goto_0
 .end method
 
 .method public disableApnType(Ljava/lang/String;)I
@@ -950,29 +1059,70 @@
     .parameter "sub"
 
     .prologue
-    .line 870
-    const/4 v0, 0x0
+    .line 910
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 911
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0, p1}, Lcom/android/internal/telephony/Phone;->disableApnType(Ljava/lang/String;)I
+
+    move-result v0
 
     return v0
 .end method
 
 .method public disableDualDataConnectivity(I)Z
-    .locals 1
+    .locals 3
     .parameter "sub"
 
     .prologue
-    .line 874
-    const/4 v0, 0x0
+    .line 915
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
 
-    return v0
+    .line 916
+    iget-object v1, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v2, "connectivity"
+
+    invoke-virtual {v1, v2}, Lcom/android/phone/PhoneApp;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/net/ConnectivityManager;
+
+    .line 918
+    .local v0, cm:Landroid/net/ConnectivityManager;
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/net/ConnectivityManager;->setMobileDataEnabled(Z)V
+
+    .line 919
+    const/4 v1, 0x1
+
+    return v1
 .end method
 
 .method public disableDualLocationUpdates(I)V
-    .locals 0
+    .locals 3
     .parameter "sub"
 
     .prologue
-    .line 878
+    .line 923
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v1, "android.permission.CONTROL_LOCATION_UPDATES"
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 925
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->disableLocationUpdates()V
+
+    .line 926
     return-void
 .end method
 
@@ -1003,7 +1153,7 @@
     .parameter "sub"
 
     .prologue
-    .line 881
+    .line 929
     const/4 v0, 0x0
 
     return v0
@@ -1061,29 +1211,68 @@
     .parameter "sub"
 
     .prologue
-    .line 885
-    const/4 v0, 0x0
+    .line 933
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 934
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0, p1}, Lcom/android/internal/telephony/Phone;->enableApnType(Ljava/lang/String;)I
+
+    move-result v0
 
     return v0
 .end method
 
 .method public enableDualDataConnectivity(I)Z
-    .locals 1
+    .locals 4
     .parameter "sub"
 
     .prologue
-    .line 889
-    const/4 v0, 0x0
+    const/4 v3, 0x1
 
-    return v0
+    .line 938
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 939
+    iget-object v1, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v2, "connectivity"
+
+    invoke-virtual {v1, v2}, Lcom/android/phone/PhoneApp;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/net/ConnectivityManager;
+
+    .line 941
+    .local v0, cm:Landroid/net/ConnectivityManager;
+    invoke-virtual {v0, v3}, Landroid/net/ConnectivityManager;->setMobileDataEnabled(Z)V
+
+    .line 942
+    return v3
 .end method
 
 .method public enableDualLocationUpdates(I)V
-    .locals 0
+    .locals 3
     .parameter "sub"
 
     .prologue
-    .line 893
+    .line 946
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v1, "android.permission.CONTROL_LOCATION_UPDATES"
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 948
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->enableLocationUpdates()V
+
+    .line 949
     return-void
 .end method
 
@@ -1135,12 +1324,27 @@
 .end method
 
 .method public endDualCall(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 899
-    const/4 v0, 0x0
+    .line 955
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceCallPermission()V
+
+    .line 956
+    const/4 v0, 0x5
+
+    const/4 v1, 0x0
+
+    invoke-direct {p0, v0, v1}, Lcom/android/phone/PhoneInterfaceManager;->sendRequest(ILjava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Boolean;
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
 
     return v0
 .end method
@@ -1150,7 +1354,7 @@
     .parameter "exec"
 
     .prologue
-    .line 903
+    .line 960
     const-string v0, ""
 
     return-object v0
@@ -1280,7 +1484,7 @@
     .locals 1
 
     .prologue
-    .line 907
+    .line 964
     const/4 v0, 0x0
 
     return v0
@@ -1380,8 +1584,12 @@
     .parameter "sub"
 
     .prologue
-    .line 911
-    const/4 v0, 0x0
+    .line 968
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getPhoneType()I
+
+    move-result v0
 
     return v0
 .end method
@@ -1391,21 +1599,72 @@
     .parameter "sub"
 
     .prologue
-    .line 915
-    const/4 v0, 0x0
+    .line 972
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/CallManager;->getState()Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/android/internal/telephony/DefaultPhoneNotifier;->convertCallState(Lcom/android/internal/telephony/Phone$State;)I
+
+    move-result v0
 
     return v0
 .end method
 
 .method public getDualCellLocation(I)Landroid/os/Bundle;
-    .locals 1
+    .locals 6
     .parameter "sub"
 
     .prologue
-    .line 919
-    const/4 v0, 0x0
+    const/4 v5, 0x0
 
+    .line 977
+    :try_start_0
+    iget-object v2, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v3, "android.permission.ACCESS_FINE_LOCATION"
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v2, v3, v4}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 986
+    :goto_0
+    new-instance v0, Landroid/os/Bundle;
+
+    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
+
+    .line 987
+    .local v0, data:Landroid/os/Bundle;
+    iget-object v2, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v2}, Lcom/android/internal/telephony/Phone;->getCellLocation()Landroid/telephony/CellLocation;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Landroid/telephony/CellLocation;->fillInNotifierBundle(Landroid/os/Bundle;)V
+
+    .line 988
     return-object v0
+
+    .line 979
+    .end local v0           #data:Landroid/os/Bundle;
+    :catch_0
+    move-exception v1
+
+    .line 983
+    .local v1, e:Ljava/lang/SecurityException;
+    iget-object v2, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v3, "android.permission.ACCESS_COARSE_LOCATION"
+
+    invoke-virtual {v2, v3, v5}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_0
 .end method
 
 .method public getDualDataActivity(I)I
@@ -1413,8 +1672,16 @@
     .parameter "sub"
 
     .prologue
-    .line 923
-    const/4 v0, 0x0
+    .line 992
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getDataActivityState()Lcom/android/internal/telephony/Phone$DataActivityState;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/android/internal/telephony/DefaultPhoneNotifier;->convertDataActivityState(Lcom/android/internal/telephony/Phone$DataActivityState;)I
+
+    move-result v0
 
     return v0
 .end method
@@ -1424,21 +1691,121 @@
     .parameter "sub"
 
     .prologue
-    .line 927
-    const/4 v0, 0x0
+    .line 996
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getDataConnectionState()Lcom/android/internal/telephony/Phone$DataState;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/android/internal/telephony/DefaultPhoneNotifier;->convertDataState(Lcom/android/internal/telephony/Phone$DataState;)I
+
+    move-result v0
 
     return v0
 .end method
 
 .method public getDualNeighboringCellInfo(I)Ljava/util/List;
-    .locals 1
+    .locals 7
     .parameter "sub"
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(I)",
+            "Ljava/util/List",
+            "<",
+            "Landroid/telephony/NeighboringCellInfo;",
+            ">;"
+        }
+    .end annotation
 
     .prologue
-    .line 931
-    const/4 v0, 0x0
+    const/4 v6, 0x0
 
-    return-object v0
+    .line 1002
+    :try_start_0
+    iget-object v3, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v4, "android.permission.ACCESS_FINE_LOCATION"
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v3, v4, v5}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1013
+    :goto_0
+    const/4 v1, 0x0
+
+    .line 1016
+    .local v1, cells:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/telephony/NeighboringCellInfo;>;"
+    const/4 v3, 0x2
+
+    const/4 v4, 0x0
+
+    :try_start_1
+    invoke-direct {p0, v3, v4}, Lcom/android/phone/PhoneInterfaceManager;->sendRequest(ILjava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v3
+
+    move-object v0, v3
+
+    check-cast v0, Ljava/util/ArrayList;
+
+    move-object v1, v0
+    :try_end_1
+    .catch Ljava/lang/RuntimeException; {:try_start_1 .. :try_end_1} :catch_1
+
+    .line 1022
+    :goto_1
+    return-object v1
+
+    .line 1004
+    .end local v1           #cells:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/telephony/NeighboringCellInfo;>;"
+    :catch_0
+    move-exception v2
+
+    .line 1009
+    .local v2, e:Ljava/lang/SecurityException;
+    iget-object v3, p0, Lcom/android/phone/PhoneInterfaceManager;->mApp:Lcom/android/phone/PhoneApp;
+
+    const-string v4, "android.permission.ACCESS_COARSE_LOCATION"
+
+    invoke-virtual {v3, v4, v6}, Lcom/android/phone/PhoneApp;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V
+
+    goto :goto_0
+
+    .line 1018
+    .end local v2           #e:Ljava/lang/SecurityException;
+    .restart local v1       #cells:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/telephony/NeighboringCellInfo;>;"
+    :catch_1
+    move-exception v2
+
+    .line 1019
+    .local v2, e:Ljava/lang/RuntimeException;
+    const-string v3, "PhoneInterfaceManager"
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "getNeighboringCellInfo "
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_1
 .end method
 
 .method public getDualNetworkType(I)I
@@ -1446,8 +1813,16 @@
     .parameter "sub"
 
     .prologue
-    .line 935
-    const/4 v0, 0x0
+    .line 1027
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/telephony/ServiceState;->getNetworkType()I
+
+    move-result v0
 
     return v0
 .end method
@@ -1457,7 +1832,7 @@
     .parameter "sub"
 
     .prologue
-    .line 939
+    .line 1031
     const/4 v0, 0x0
 
     return v0
@@ -1468,7 +1843,7 @@
     .parameter "sub"
 
     .prologue
-    .line 943
+    .line 1035
     const/4 v0, 0x0
 
     return v0
@@ -1479,8 +1854,12 @@
     .parameter "sub"
 
     .prologue
-    .line 947
-    const/4 v0, 0x0
+    .line 1039
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getVoiceMessageCount()I
+
+    move-result v0
 
     return v0
 .end method
@@ -1490,7 +1869,7 @@
     .parameter "sub"
 
     .prologue
-    .line 951
+    .line 1043
     const/4 v0, 0x0
 
     return v0
@@ -1634,7 +2013,7 @@
     .locals 1
 
     .prologue
-    .line 955
+    .line 1047
     const/4 v0, 0x0
 
     return v0
@@ -1646,7 +2025,7 @@
     .parameter "sub"
 
     .prologue
-    .line 959
+    .line 1051
     const/4 v0, 0x0
 
     return v0
@@ -1657,7 +2036,7 @@
     .parameter "sub"
 
     .prologue
-    .line 963
+    .line 1055
     const/4 v0, 0x0
 
     return v0
@@ -1667,7 +2046,7 @@
     .locals 1
 
     .prologue
-    .line 967
+    .line 1059
     const/4 v0, 0x0
 
     return v0
@@ -1709,12 +2088,25 @@
 
 .method public handleDualPinMmi(Ljava/lang/String;I)Z
     .locals 1
-    .parameter "string"
+    .parameter "dialString"
     .parameter "sub"
 
     .prologue
-    .line 975
-    const/4 v0, 0x0
+    .line 1067
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 1068
+    const/4 v0, 0x1
+
+    invoke-direct {p0, v0, p1}, Lcom/android/phone/PhoneInterfaceManager;->sendRequest(ILjava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Boolean;
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
 
     return v0
 .end method
@@ -1748,8 +2140,16 @@
     .parameter "sub"
 
     .prologue
-    .line 971
-    const/4 v0, 0x0
+    .line 1063
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getIccCard()Lcom/android/internal/telephony/IccCard;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/IccCard;->hasIccCard()Z
+
+    move-result v0
 
     return v0
 .end method
@@ -1791,54 +2191,126 @@
     .parameter "sub"
 
     .prologue
-    .line 979
-    const/4 v0, 0x0
+    .line 1072
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->isDataConnectivityPossible()Z
+
+    move-result v0
 
     return v0
 .end method
 
 .method public isDualIdle(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 983
+    .line 1076
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/CallManager;->getState()Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v0
+
+    sget-object v1, Lcom/android/internal/telephony/Phone$State;->IDLE:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public isDualOffhook(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 987
+    .line 1080
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/CallManager;->getState()Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v0
+
+    sget-object v1, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public isDualRadioOn(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 991
+    .line 1084
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/telephony/ServiceState;->getState()I
+
+    move-result v0
+
+    const/4 v1, 0x3
+
+    if-eq v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public isDualRinging(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 995
+    .line 1088
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/CallManager;->getState()Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v0
+
+    sget-object v1, Lcom/android/internal/telephony/Phone$State;->RINGING:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public isDualSimPinEnabled(I)Z
@@ -1846,8 +2318,17 @@
     .parameter "sub"
 
     .prologue
-    .line 999
-    const/4 v0, 0x0
+    .line 1092
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceReadPermission()V
+
+    .line 1093
+    invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/phone/PhoneApp;->isSimPinEnabled()Z
+
+    move-result v0
 
     return v0
 .end method
@@ -1935,14 +2416,34 @@
 .end method
 
 .method public isRadioOnOnSubscription(I)Z
-    .locals 1
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 1003
+    .line 1097
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/telephony/ServiceState;->getState()I
+
+    move-result v0
+
+    const/4 v1, 0x3
+
+    if-eq v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    return v0
+
+    :cond_0
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public isRinging()Z
@@ -2009,7 +2510,7 @@
     .parameter "sub"
 
     .prologue
-    .line 1018
+    .line 1112
     const/4 v0, 0x0
 
     return v0
@@ -2021,7 +2522,7 @@
     .parameter "string"
 
     .prologue
-    .line 1022
+    .line 1116
     return-void
 .end method
 
@@ -2032,22 +2533,55 @@
     .parameter "sub"
 
     .prologue
-    .line 1025
+    .line 1119
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public setDualRadio(ZI)Z
-    .locals 1
-    .parameter "enable"
+    .locals 3
+    .parameter "turnOn"
     .parameter "sub"
 
     .prologue
-    .line 1029
+    const/4 v1, 0x1
+
+    .line 1123
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 1124
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->getServiceState()Landroid/telephony/ServiceState;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/telephony/ServiceState;->getState()I
+
+    move-result v0
+
+    const/4 v2, 0x3
+
+    if-eq v0, v2, :cond_1
+
+    move v0, v1
+
+    :goto_0
+    if-eq v0, p1, :cond_0
+
+    .line 1125
+    invoke-virtual {p0}, Lcom/android/phone/PhoneInterfaceManager;->toggleRadioOnOff()V
+
+    .line 1127
+    :cond_0
+    return v1
+
+    .line 1124
+    :cond_1
     const/4 v0, 0x0
 
-    return v0
+    goto :goto_0
 .end method
 
 .method public setGpsOne(I)V
@@ -2055,7 +2589,7 @@
     .parameter "sub"
 
     .prologue
-    .line 1033
+    .line 1131
     return-void
 .end method
 
@@ -2109,7 +2643,7 @@
     .parameter "sub"
 
     .prologue
-    .line 1010
+    .line 1104
     const/4 v0, 0x0
 
     return v0
@@ -2121,7 +2655,7 @@
     .parameter "type"
 
     .prologue
-    .line 1014
+    .line 1108
     const/4 v0, 0x0
 
     return v0
@@ -2172,30 +2706,46 @@
     .parameter "sub"
 
     .prologue
-    .line 1051
     const/4 v0, 0x0
+
+    .line 1155
+    invoke-direct {p0, v0, v0}, Lcom/android/phone/PhoneInterfaceManager;->showCallScreenInternal(ZZ)Z
+
+    move-result v0
 
     return v0
 .end method
 
 .method public showDualCallScreenWithDialpad(ZI)Z
     .locals 1
-    .parameter "enable"
+    .parameter "showDialpad"
     .parameter "sub"
 
     .prologue
-    .line 1055
-    const/4 v0, 0x0
+    .line 1159
+    const/4 v0, 0x1
+
+    invoke-direct {p0, v0, p1}, Lcom/android/phone/PhoneInterfaceManager;->showCallScreenInternal(ZZ)Z
+
+    move-result v0
 
     return v0
 .end method
 
 .method public silenceDualRinger(I)V
-    .locals 0
+    .locals 1
     .parameter "sub"
 
     .prologue
-    .line 1059
+    .line 1167
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 1168
+    const/4 v0, 0x6
+
+    invoke-direct {p0, v0}, Lcom/android/phone/PhoneInterfaceManager;->sendRequestAsync(I)V
+
+    .line 1169
     return-void
 .end method
 
@@ -2219,7 +2769,7 @@
     .locals 0
 
     .prologue
-    .line 1036
+    .line 1134
     return-void
 .end method
 
@@ -2229,35 +2779,77 @@
     .parameter "string"
 
     .prologue
-    .line 1039
+    .line 1137
     const-string v0, ""
 
     return-object v0
 .end method
 
 .method public supplyDualPin(Ljava/lang/String;I)Z
-    .locals 1
-    .parameter "string"
+    .locals 2
+    .parameter "pin"
     .parameter "sub"
 
     .prologue
-    .line 1043
-    const/4 v0, 0x0
+    .line 1141
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
 
-    return v0
+    .line 1142
+    new-instance v0, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;
+
+    iget-object v1, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v1}, Lcom/android/internal/telephony/Phone;->getIccCard()Lcom/android/internal/telephony/IccCard;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;-><init>(Lcom/android/internal/telephony/IccCard;)V
+
+    .line 1143
+    .local v0, checkSimPin:Lcom/android/phone/PhoneInterfaceManager$UnlockSim;
+    invoke-virtual {v0}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;->start()V
+
+    .line 1144
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1, p1}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;->unlockSim(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v1
+
+    return v1
 .end method
 
 .method public supplyDualPuk(Ljava/lang/String;Ljava/lang/String;I)Z
-    .locals 1
-    .parameter "string"
-    .parameter "s"
+    .locals 2
+    .parameter "puk"
+    .parameter "pin"
     .parameter "sub"
 
     .prologue
-    .line 1047
-    const/4 v0, 0x0
+    .line 1148
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
 
-    return v0
+    .line 1149
+    new-instance v0, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;
+
+    iget-object v1, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v1}, Lcom/android/internal/telephony/Phone;->getIccCard()Lcom/android/internal/telephony/IccCard;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;-><init>(Lcom/android/internal/telephony/IccCard;)V
+
+    .line 1150
+    .local v0, checkSimPuk:Lcom/android/phone/PhoneInterfaceManager$UnlockSim;
+    invoke-virtual {v0}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;->start()V
+
+    .line 1151
+    invoke-virtual {v0, p1, p2}, Lcom/android/phone/PhoneInterfaceManager$UnlockSim;->unlockSim(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v1
+
+    return v1
 .end method
 
 .method public supplyPin(Ljava/lang/String;)Z
@@ -2330,7 +2922,7 @@
     .parameter "sub"
 
     .prologue
-    .line 1062
+    .line 1172
     const/4 v0, 0x0
 
     return v0
@@ -2340,7 +2932,7 @@
     .locals 0
 
     .prologue
-    .line 1066
+    .line 1176
     return-void
 .end method
 
@@ -2350,7 +2942,7 @@
     .parameter "sub"
 
     .prologue
-    .line 1069
+    .line 1179
     return-void
 .end method
 
@@ -2362,7 +2954,7 @@
     .parameter "io"
 
     .prologue
-    .line 1072
+    .line 1182
     const/4 v0, 0x0
 
     return v0
@@ -2375,19 +2967,42 @@
     .parameter "b"
 
     .prologue
-    .line 1076
+    .line 1186
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public toggleDualRadioOnOff(I)V
-    .locals 0
+    .locals 2
     .parameter "sub"
 
     .prologue
-    .line 1080
+    .line 1190
+    invoke-direct {p0}, Lcom/android/phone/PhoneInterfaceManager;->enforceModifyPermission()V
+
+    .line 1191
+    iget-object v1, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-virtual {p0}, Lcom/android/phone/PhoneInterfaceManager;->isRadioOn()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x1
+
+    :goto_0
+    invoke-interface {v1, v0}, Lcom/android/internal/telephony/Phone;->setRadioPower(Z)V
+
+    .line 1192
     return-void
+
+    .line 1191
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
 .end method
 
 .method public toggleRadioOnOff()V
@@ -2422,11 +3037,16 @@
 .end method
 
 .method public updateDualServiceLocation(I)V
-    .locals 0
+    .locals 1
     .parameter "sub"
 
     .prologue
-    .line 1083
+    .line 1198
+    iget-object v0, p0, Lcom/android/phone/PhoneInterfaceManager;->mPhone:Lcom/android/internal/telephony/Phone;
+
+    invoke-interface {v0}, Lcom/android/internal/telephony/Phone;->updateServiceLocation()V
+
+    .line 1199
     return-void
 .end method
 
