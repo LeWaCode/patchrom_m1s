@@ -30,7 +30,7 @@
 
 .field static final TRANSACTION_clearUserActivityTimeout:I = 0x8
 
-.field static final TRANSACTION_crash:I = 0x11
+.field static final TRANSACTION_crash:I = 0x10
 
 .field static final TRANSACTION_getSupportedWakeLockFlags:I = 0xa
 
@@ -44,15 +44,15 @@
 
 .field static final TRANSACTION_reboot:I = 0xf
 
-.field static final TRANSACTION_rebootConfirm:I = 0x10
+.field static final TRANSACTION_rebootConfirm:I = 0x50
 
 .field static final TRANSACTION_releaseWakeLock:I = 0x5
 
-.field static final TRANSACTION_setAttentionLight:I = 0x13
+.field static final TRANSACTION_setAttentionLight:I = 0x12
 
-.field static final TRANSACTION_setAutoBrightnessAdjustment:I = 0x14
+.field static final TRANSACTION_setAutoBrightnessAdjustment:I = 0x13
 
-.field static final TRANSACTION_setBacklightBrightness:I = 0x12
+.field static final TRANSACTION_setBacklightBrightness:I = 0x11
 
 .field static final TRANSACTION_setMaximumScreenOffTimeount:I = 0xc
 
@@ -663,39 +663,6 @@
 
     .end local v0           #_arg0:Ljava/lang/String;
     :sswitch_10
-    const-string v9, "android.os.IPowerManager"
-
-    invoke-virtual {p2, v9}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
-
-    move-result-object v0
-
-    .restart local v0       #_arg0:Ljava/lang/String;
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v9
-
-    if-eqz v9, :cond_7
-
-    move v2, v7
-
-    .local v2, _arg1:Z
-    :goto_7
-    invoke-virtual {p0, v0, v2}, Landroid/os/IPowerManager$Stub;->rebootConfirm(Ljava/lang/String;Z)V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
-
-    .end local v2           #_arg1:Z
-    :cond_7
-    move v2, v8
-
-    goto :goto_7
-
-    .end local v0           #_arg0:Ljava/lang/String;
-    :sswitch_11
     const-string v8, "android.os.IPowerManager"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -712,7 +679,7 @@
     goto/16 :goto_0
 
     .end local v0           #_arg0:Ljava/lang/String;
-    :sswitch_12
+    :sswitch_11
     const-string v8, "android.os.IPowerManager"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -729,7 +696,7 @@
     goto/16 :goto_0
 
     .end local v0           #_arg0:I
-    :sswitch_13
+    :sswitch_12
     const-string v9, "android.os.IPowerManager"
 
     invoke-virtual {p2, v9}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -738,12 +705,12 @@
 
     move-result v9
 
-    if-eqz v9, :cond_8
+    if-eqz v9, :cond_7
 
     move v0, v7
 
     .local v0, _arg0:Z
-    :goto_8
+    :goto_7
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
@@ -757,12 +724,12 @@
 
     .end local v0           #_arg0:Z
     .end local v2           #_arg1:I
-    :cond_8
+    :cond_7
     move v0, v8
 
-    goto :goto_8
+    goto :goto_7
 
-    :sswitch_14
+    :sswitch_13
     const-string v8, "android.os.IPowerManager"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -777,6 +744,40 @@
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
     goto/16 :goto_0
+
+    :sswitch_lewa_0
+    const-string v9, "android.os.IPowerManager"
+
+    invoke-virtual {p2, v9}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .restart local v0       #_arg0:Ljava/lang/String;
+    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v9
+
+    if-eqz v9, :cond_lewa_0
+
+    move v2, v7
+
+    .local v2, _arg1:Z
+    :goto_lewa_0
+    invoke-virtual {p0, v0, v2}, Landroid/os/IPowerManager$Stub;->rebootConfirm(Ljava/lang/String;Z)V
+
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    goto/16 :goto_0
+
+    .end local v2           #_arg1:Z
+    :cond_lewa_0
+    move v2, v8
+
+    goto :goto_lewa_0
+
+    .end local v0           #_arg0:Ljava/lang/String;
 
     nop
 
@@ -801,7 +802,7 @@
         0x11 -> :sswitch_11
         0x12 -> :sswitch_12
         0x13 -> :sswitch_13
-        0x14 -> :sswitch_14
+        0x50 -> :sswitch_lewa_0
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method
