@@ -48,12 +48,12 @@
     .parameter "intent"
 
     .prologue
-    .line 352
+    .line 353
     const/high16 v1, 0x3400
 
     invoke-virtual {p1, v1}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
 
-    .line 357
+    .line 358
     :try_start_0
     invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
 
@@ -63,7 +63,7 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 362
+    .line 363
     :goto_0
     :try_start_1
     iget-object v1, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
@@ -77,15 +77,15 @@
     :try_end_1
     .catch Landroid/content/ActivityNotFoundException; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 366
+    .line 367
     :goto_1
     return-void
 
-    .line 358
+    .line 359
     :catch_0
     move-exception v0
 
-    .line 359
+    .line 360
     .local v0, e:Landroid/os/RemoteException;
     const-string v1, "LockScreen"
 
@@ -95,12 +95,12 @@
 
     goto :goto_0
 
-    .line 363
+    .line 364
     .end local v0           #e:Landroid/os/RemoteException;
     :catch_1
     move-exception v0
 
-    .line 364
+    .line 365
     .local v0, e:Landroid/content/ActivityNotFoundException;
     const-string v1, "LockScreen"
 
@@ -137,14 +137,14 @@
     .locals 2
 
     .prologue
-    .line 398
+    .line 399
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->setOnTriggerListener(Lcom/android/internal/widget/multiwaveview/GlowPadView$OnTriggerListener;)V
 
-    .line 399
+    .line 400
     return-void
 .end method
 
@@ -153,7 +153,7 @@
     .parameter "resourceId"
 
     .prologue
-    .line 394
+    .line 395
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     invoke-virtual {v0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->getTargetPosition(I)I
@@ -167,7 +167,7 @@
     .locals 1
 
     .prologue
-    .line 378
+    .line 379
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     return-object v0
@@ -204,7 +204,7 @@
     .locals 0
 
     .prologue
-    .line 403
+    .line 404
     return-void
 .end method
 
@@ -224,10 +224,10 @@
     .parameter "handle"
 
     .prologue
-    .line 372
+    .line 373
     if-eqz p2, :cond_0
 
-    .line 373
+    .line 374
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
 
     #getter for: Lcom/android/internal/policy/impl/LockScreen;->mCallback:Lcom/android/internal/policy/impl/KeyguardScreenCallback;
@@ -237,7 +237,7 @@
 
     invoke-interface {v0}, Lcom/android/internal/policy/impl/KeyguardScreenCallback;->pokeWakelock()V
 
-    .line 375
+    .line 376
     :cond_0
     return-void
 .end method
@@ -269,7 +269,7 @@
     .local v1, resId:I
     sparse-switch v1, :sswitch_data_0
 
-    .line 349
+    .line 350
     :goto_0
     return-void
 
@@ -337,16 +337,26 @@
 
     invoke-interface {v2}, Lcom/android/internal/policy/impl/KeyguardScreenCallback;->pokeWakelock()V
 
+    .line 337
+    iget-object v2, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
+
+    #getter for: Lcom/android/internal/policy/impl/LockScreen;->mCallback:Lcom/android/internal/policy/impl/KeyguardScreenCallback;
+    invoke-static {v2}, Lcom/android/internal/policy/impl/LockScreen;->access$400(Lcom/android/internal/policy/impl/LockScreen;)Lcom/android/internal/policy/impl/KeyguardScreenCallback;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Lcom/android/internal/policy/impl/KeyguardScreenCallback;->goToUnlockScreen()V
+
     goto :goto_0
 
-    .line 340
+    .line 341
     :sswitch_2
     iget-object v2, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
 
     #calls: Lcom/android/internal/policy/impl/LockScreen;->toggleRingMode()V
     invoke-static {v2}, Lcom/android/internal/policy/impl/LockScreen;->access$500(Lcom/android/internal/policy/impl/LockScreen;)V
 
-    .line 341
+    .line 342
     iget-object v2, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
 
     #getter for: Lcom/android/internal/policy/impl/LockScreen;->mCallback:Lcom/android/internal/policy/impl/KeyguardScreenCallback;
@@ -358,7 +368,7 @@
 
     goto :goto_0
 
-    .line 346
+    .line 347
     :sswitch_3
     iget-object v2, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->this$0:Lcom/android/internal/policy/impl/LockScreen;
 
@@ -372,6 +382,8 @@
     goto :goto_0
 
     .line 323
+    nop
+
     :sswitch_data_0
     .sparse-switch
         0x1080295 -> :sswitch_0
@@ -386,12 +398,12 @@
     .locals 1
 
     .prologue
-    .line 386
+    .line 387
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     invoke-virtual {v0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->ping()V
 
-    .line 387
+    .line 388
     return-void
 .end method
 
@@ -400,12 +412,12 @@
     .parameter "animate"
 
     .prologue
-    .line 382
+    .line 383
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     invoke-virtual {v0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->reset(Z)V
 
-    .line 383
+    .line 384
     return-void
 .end method
 
@@ -415,12 +427,12 @@
     .parameter "enabled"
 
     .prologue
-    .line 390
+    .line 391
     iget-object v0, p0, Lcom/android/internal/policy/impl/LockScreen$GlowPadViewMethods;->mGlowPadView:Lcom/android/internal/widget/multiwaveview/GlowPadView;
 
     invoke-virtual {v0, p1, p2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->setEnableTarget(IZ)V
 
-    .line 391
+    .line 392
     return-void
 .end method
 

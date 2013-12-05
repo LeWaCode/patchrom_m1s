@@ -6,7 +6,6 @@ private-phone-apps := ApplicationsProvider \
 					  DefaultContainerService \
 					  KeyChain \
 					  MusicFX \
-					  Stk \
 					  UserDictionaryProvider \
 					  VpnDialogs \
 					  WAPPushManager \

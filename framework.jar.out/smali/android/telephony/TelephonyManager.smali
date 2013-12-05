@@ -1814,16 +1814,20 @@
     :goto_0
     return-object v1
 
+    .line 718
     :catch_0
     move-exception v0
 
+    .line 719
     .local v0, ex:Landroid/os/RemoteException;
     goto :goto_0
 
+    .line 720
     .end local v0           #ex:Landroid/os/RemoteException;
     :catch_1
     move-exception v0
 
+    .line 722
     .local v0, ex:Ljava/lang/NullPointerException;
     goto :goto_0
 .end method
@@ -1832,12 +1836,14 @@
     .locals 2
 
     .prologue
+    .line 654
     const-string v1, "gsm.sim.state"
 
     invoke-static {v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
+    .line 655
     .local v0, prop:Ljava/lang/String;
     const-string v1, "ABSENT"
 
@@ -1847,11 +1853,14 @@
 
     if-eqz v1, :cond_0
 
+    .line 656
     const/4 v1, 0x1
 
+    .line 674
     :goto_0
     return v1
 
+    .line 658
     :cond_0
     const-string v1, "PIN_REQUIRED"
 
@@ -1861,10 +1870,12 @@
 
     if-eqz v1, :cond_1
 
+    .line 659
     const/4 v1, 0x2
 
     goto :goto_0
 
+    .line 661
     :cond_1
     const-string v1, "PUK_REQUIRED"
 
@@ -1874,10 +1885,12 @@
 
     if-eqz v1, :cond_2
 
+    .line 662
     const/4 v1, 0x3
 
     goto :goto_0
 
+    .line 664
     :cond_2
     const-string v1, "PERSO_LOCKED"
 
@@ -1887,10 +1900,12 @@
 
     if-eqz v1, :cond_3
 
+    .line 665
     const/4 v1, 0x4
 
     goto :goto_0
 
+    .line 667
     :cond_3
     const-string v1, "READY"
 
@@ -1900,10 +1915,12 @@
 
     if-eqz v1, :cond_4
 
+    .line 668
     const/4 v1, 0x5
 
     goto :goto_0
 
+    .line 670
     :cond_4
     const-string v1, "CARD_IO_ERROR"
 
@@ -1913,10 +1930,12 @@
 
     if-eqz v1, :cond_5
 
+    .line 671
     const/4 v1, 0x6
 
     goto :goto_0
 
+    .line 674
     :cond_5
     const/4 v1, 0x0
 
@@ -1951,84 +1970,6 @@
     :goto_0
     return-object v1
 
-    :catch_0
-    move-exception v0
-
-    .local v0, ex:Landroid/os/RemoteException;
-    goto :goto_0
-
-    .end local v0           #ex:Landroid/os/RemoteException;
-    :catch_1
-    move-exception v0
-
-    .local v0, ex:Ljava/lang/NullPointerException;
-    goto :goto_0
-.end method
-
-.method public getVoiceMailAlphaTag()Ljava/lang/String;
-    .locals 3
-
-    .prologue
-    const/4 v1, 0x0
-
-    .line 717
-    :try_start_0
-    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Lcom/android/internal/telephony/IPhoneSubInfo;->getVoiceMailAlphaTag()Ljava/lang/String;
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
-
-    move-result-object v1
-
-    .line 722
-    :goto_0
-    return-object v1
-
-    .line 718
-    :catch_0
-    move-exception v0
-
-    .line 719
-    .local v0, ex:Landroid/os/RemoteException;
-    goto :goto_0
-
-    .line 720
-    .end local v0           #ex:Landroid/os/RemoteException;
-    :catch_1
-    move-exception v0
-
-    .line 722
-    .local v0, ex:Ljava/lang/NullPointerException;
-    goto :goto_0
-.end method
-
-.method public getVoiceMailNumber()Ljava/lang/String;
-    .locals 3
-
-    .prologue
-    const/4 v1, 0x0
-
-    .line 763
-    :try_start_0
-    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
-
-    move-result-object v2
-
-    invoke-interface {v2}, Lcom/android/internal/telephony/IPhoneSubInfo;->getVoiceMailNumber()Ljava/lang/String;
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
-
-    move-result-object v1
-
-    .line 768
-    :goto_0
-    return-object v1
-
     .line 764
     :catch_0
     move-exception v0
@@ -2047,7 +1988,7 @@
     goto :goto_0
 .end method
 
-.method public getVoiceMessageCount()I
+.method public getVoiceMailAlphaTag()Ljava/lang/String;
     .locals 3
 
     .prologue
@@ -2055,48 +1996,93 @@
 
     .line 893
     :try_start_0
-    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getITelephony()Lcom/android/internal/telephony/ITelephony;
+    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
 
     move-result-object v2
 
-    invoke-interface {v2}, Lcom/android/internal/telephony/ITelephony;->getVoiceMessageCount()I
+    invoke-interface {v2}, Lcom/android/internal/telephony/IPhoneSubInfo;->getVoiceMailAlphaTag()Ljava/lang/String;
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
     .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
 
-    move-result v1
+    move-result-object v1
 
+    .line 898
     :goto_0
-    return v1
+    return-object v1
 
+    .line 894
     :catch_0
     move-exception v0
 
+    .line 895
     .local v0, ex:Landroid/os/RemoteException;
     goto :goto_0
 
+    .line 896
     .end local v0           #ex:Landroid/os/RemoteException;
     :catch_1
     move-exception v0
 
+    .line 898
     .local v0, ex:Ljava/lang/NullPointerException;
     goto :goto_0
 .end method
 
-.method public hasIccCard()Z
+.method public getVoiceMailNumber()Ljava/lang/String;
     .locals 3
 
     .prologue
     const/4 v1, 0x0
 
     .line 838
+    :try_start_0
+    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getSubscriberInfo()Lcom/android/internal/telephony/IPhoneSubInfo;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Lcom/android/internal/telephony/IPhoneSubInfo;->getVoiceMailNumber()Ljava/lang/String;
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
+
+    move-result-object v1
+
+    .line 843
+    :goto_0
+    return-object v1
+
+    .line 839
+    :catch_0
+    move-exception v0
+
+    .line 840
+    .local v0, ex:Landroid/os/RemoteException;
+    goto :goto_0
+
+    .line 841
+    .end local v0           #ex:Landroid/os/RemoteException;
+    :catch_1
+    move-exception v0
+
+    .line 843
+    .local v0, ex:Ljava/lang/NullPointerException;
+    goto :goto_0
+.end method
+
+.method public getVoiceMessageCount()I
+    .locals 3
+
+    .prologue
+    const/4 v1, 0x0
+
     .line 875
     :try_start_0
     invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getITelephony()Lcom/android/internal/telephony/ITelephony;
 
     move-result-object v2
 
-    invoke-interface {v2}, Lcom/android/internal/telephony/ITelephony;->hasIccCard()Z
+    invoke-interface {v2}, Lcom/android/internal/telephony/ITelephony;->getVoiceMessageCount()I
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
     .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
@@ -2121,6 +2107,47 @@
     move-exception v0
 
     .line 880
+    .local v0, ex:Ljava/lang/NullPointerException;
+    goto :goto_0
+.end method
+
+.method public hasIccCard()Z
+    .locals 3
+
+    .prologue
+    const/4 v1, 0x0
+
+    .line 631
+    :try_start_0
+    invoke-direct {p0}, Landroid/telephony/TelephonyManager;->getITelephony()Lcom/android/internal/telephony/ITelephony;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Lcom/android/internal/telephony/ITelephony;->hasIccCard()Z
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
+
+    move-result v1
+
+    .line 637
+    :goto_0
+    return v1
+
+    .line 632
+    :catch_0
+    move-exception v0
+
+    .line 634
+    .local v0, ex:Landroid/os/RemoteException;
+    goto :goto_0
+
+    .line 635
+    .end local v0           #ex:Landroid/os/RemoteException;
+    :catch_1
+    move-exception v0
+
+    .line 637
     .local v0, ex:Ljava/lang/NullPointerException;
     goto :goto_0
 .end method

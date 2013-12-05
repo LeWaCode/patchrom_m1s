@@ -8621,19 +8621,23 @@
 
     move-result v159
 
+    .line 1692
     .local v159, res:I
     invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
 
+    .line 1693
     move-object/from16 v0, p3
 
     move/from16 v1, v159
 
     invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeInt(I)V
 
+    .line 1694
     const/4 v5, 0x1
 
     goto/16 :goto_0
 
+    .line 113
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_57

@@ -12,7 +12,7 @@ local-out-zip-file := lewa_m1s.zip
 local-previous-target-dir := ~/workspace/ota_base/m1s_4.1
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := Bluetooth
+local-modified-apps := Bluetooth Stk
 
 local-modified-jars :=
 
