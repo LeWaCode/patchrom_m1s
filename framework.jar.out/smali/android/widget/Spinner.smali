@@ -407,6 +407,9 @@
 
 .method private hideInputField()V
     .locals 3
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     sget-boolean v1, Landroid/widget/Spinner;->isHideInputKeyBoard:Z

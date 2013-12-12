@@ -1033,124 +1033,114 @@
 .end method
 
 .method private doKeyguardLocked()V
-    .locals 6
+    .locals 7
 
     .prologue
-    .line 604
-    iget-boolean v5, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mExternallyEnabled:Z
+    const/4 v4, 0x1
 
-    if-nez v5, :cond_1
+    const/4 v5, 0x0
 
-    .line 650
+    iget-boolean v6, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mExternallyEnabled:Z
+
+    if-nez v6, :cond_1
+
     :cond_0
     :goto_0
     return-void
 
-    .line 620
     :cond_1
-    iget-object v5, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mKeyguardViewManager:Lcom/android/internal/policy/impl/KeyguardViewManager;
+    iget-object v6, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mKeyguardViewManager:Lcom/android/internal/policy/impl/KeyguardViewManager;
 
-    invoke-virtual {v5}, Lcom/android/internal/policy/impl/KeyguardViewManager;->isShowing()Z
+    invoke-virtual {v6}, Lcom/android/internal/policy/impl/KeyguardViewManager;->isShowing()Z
 
-    move-result v5
+    move-result v6
 
-    if-nez v5, :cond_0
+    if-nez v6, :cond_0
 
-    .line 626
-    iget-object v5, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mUpdateMonitor:Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;
+    const-string v6, "keyguard.no_require_sim"
 
-    invoke-virtual {v5}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->isDeviceProvisioned()Z
+    invoke-static {v6, v5}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
-    move-result v3
+    move-result v6
 
-    .line 628
-    .local v3, provisioned:Z
-    invoke-static {}, Landroid/telephony/MSimTelephonyManager;->getDefault()Landroid/telephony/MSimTelephonyManager;
+    if-nez v6, :cond_6
 
-    move-result-object v5
+    move v2, v4
 
-    invoke-virtual {v5}, Landroid/telephony/MSimTelephonyManager;->getPhoneCount()I
-
-    move-result v2
-
-    .line 629
-    .local v2, numPhones:I
-    new-array v4, v2, [Lcom/android/internal/telephony/IccCard$State;
-
-    .line 630
-    .local v4, state:[Lcom/android/internal/telephony/IccCard$State;
-    const/4 v1, 0x0
-
-    .line 631
-    .local v1, lockedOrMissing:Z
-    const/4 v0, 0x0
-
-    .local v0, i:I
+    .local v2, requireSim:Z
     :goto_1
-    if-ge v0, v2, :cond_3
+    iget-object v6, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mUpdateMonitor:Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;
 
-    .line 632
-    iget-object v5, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mUpdateMonitor:Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;
+    invoke-virtual {v6}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->isDeviceProvisioned()Z
 
-    invoke-virtual {v5, v0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->getSimState(I)Lcom/android/internal/telephony/IccCard$State;
+    move-result v1
 
-    move-result-object v5
+    .local v1, provisioned:Z
+    iget-object v6, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mUpdateMonitor:Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;
 
-    aput-object v5, v4, v0
+    invoke-virtual {v6}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->getSimState()Lcom/android/internal/telephony/IccCard$State;
 
-    .line 633
-    if-nez v1, :cond_2
+    move-result-object v3
 
-    aget-object v5, v4, v0
+    .local v3, state:Lcom/android/internal/telephony/IccCard$State;
+    invoke-virtual {v3}, Lcom/android/internal/telephony/IccCard$State;->isPinLocked()Z
 
-    invoke-virtual {p0, v5}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->isLockedOrMissing(Lcom/android/internal/telephony/IccCard$State;)Z
+    move-result v6
 
-    move-result v5
+    if-nez v6, :cond_3
 
-    if-eqz v5, :cond_6
+    sget-object v6, Lcom/android/internal/telephony/IccCard$State;->ABSENT:Lcom/android/internal/telephony/IccCard$State;
+
+    if-eq v3, v6, :cond_2
+
+    sget-object v6, Lcom/android/internal/telephony/IccCard$State;->PERM_DISABLED:Lcom/android/internal/telephony/IccCard$State;
+
+    if-ne v3, v6, :cond_7
 
     :cond_2
-    const/4 v1, 0x1
+    if-eqz v2, :cond_7
 
-    .line 634
-    :goto_2
-    if-eqz v1, :cond_7
-
-    .line 637
     :cond_3
-    if-nez v1, :cond_4
+    move v0, v4
 
-    if-eqz v3, :cond_0
-
-    .line 643
-    :cond_4
-    iget-object v5, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
-
-    invoke-virtual {v5}, Lcom/android/internal/widget/LockPatternUtils;->isLockScreenDisabled()Z
-
-    move-result v5
-
-    if-eqz v5, :cond_5
+    .local v0, lockedOrMissing:Z
+    :goto_2
+    if-nez v0, :cond_4
 
     if-eqz v1, :cond_0
 
-    .line 649
+    :cond_4
+    iget-object v4, p0, Lcom/android/internal/policy/impl/KeyguardViewMediator;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+
+    invoke-virtual {v4}, Lcom/android/internal/widget/LockPatternUtils;->isLockScreenDisabled()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_5
+
+    if-eqz v0, :cond_0
+
     :cond_5
     invoke-direct {p0}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->showLocked()V
 
     goto :goto_0
 
-    .line 633
+    .end local v0           #lockedOrMissing:Z
+    .end local v1           #provisioned:Z
+    .end local v2           #requireSim:Z
+    .end local v3           #state:Lcom/android/internal/telephony/IccCard$State;
     :cond_6
-    const/4 v1, 0x0
-
-    goto :goto_2
-
-    .line 631
-    :cond_7
-    add-int/lit8 v0, v0, 0x1
+    move v2, v5
 
     goto :goto_1
+
+    .restart local v1       #provisioned:Z
+    .restart local v2       #requireSim:Z
+    .restart local v3       #state:Lcom/android/internal/telephony/IccCard$State;
+    :cond_7
+    move v0, v5
+
+    goto :goto_2
 .end method
 
 .method private handleHide()V

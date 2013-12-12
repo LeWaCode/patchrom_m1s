@@ -18,9 +18,9 @@
         Landroid/widget/TextView$CharWrapper;,
         Landroid/widget/TextView$SavedState;,
         Landroid/widget/TextView$BufferType;,
-        Landroid/widget/TextView$Injector;,
         Landroid/widget/TextView$OnEditorActionListener;,
-        Landroid/widget/TextView$Drawables;
+        Landroid/widget/TextView$Drawables;,
+        Landroid/widget/TextView$Injector;
     }
 .end annotation
 
@@ -265,7 +265,12 @@
 
     const/4 v3, 0x0
 
-    .line 249
+    sput-boolean v3, Landroid/widget/TextView;->isTextChanged:Z
+
+    const/4 v1, 0x0
+
+    sput-object v1, Landroid/widget/TextView;->mTypeface:Landroid/graphics/Typeface;
+
     new-instance v1, Landroid/graphics/RectF;
 
     invoke-direct {v1}, Landroid/graphics/RectF;-><init>()V
@@ -294,12 +299,6 @@
     aput v2, v1, v3
 
     sput-object v1, Landroid/widget/TextView;->MULTILINE_STATE_SET:[I
-
-    sput-boolean v3, Landroid/widget/TextView;->isTextChanged:Z
-
-    const/4 v1, 0x0
-
-    sput-object v1, Landroid/widget/TextView;->mTypeface:Landroid/graphics/Typeface;
 
     new-instance v0, Landroid/graphics/Paint;
 
