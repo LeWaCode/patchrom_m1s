@@ -19,7 +19,7 @@ local-modified-jars :=
 # All apks from LEWA
 local-lewa-removed-apps := Phone LatinIME Bluetooth
 
-local-lewa-modified-apps := 
+local-lewa-modified-apps := Settings
 
 # set ro.sys.partner in build.prop for lewa partner
 local-lewa-partner := Lewa

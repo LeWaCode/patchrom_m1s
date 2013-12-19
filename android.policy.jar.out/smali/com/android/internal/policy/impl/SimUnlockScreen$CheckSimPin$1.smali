@@ -20,20 +20,19 @@
 # instance fields
 .field final synthetic this$1:Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;
 
-.field final synthetic val$result:I
+.field final synthetic val$result:Z
 
 
 # direct methods
-.method constructor <init>(Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;I)V
+.method constructor <init>(Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;Z)V
     .locals 0
     .parameter
     .parameter
 
     .prologue
-    .line 182
     iput-object p1, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->this$1:Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;
 
-    iput p2, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->val$result:I
+    iput-boolean p2, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->val$result:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -46,13 +45,11 @@
     .locals 2
 
     .prologue
-    .line 184
     iget-object v0, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->this$1:Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;
 
-    iget v1, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->val$result:I
+    iget-boolean v1, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin$1;->val$result:Z
 
-    invoke-virtual {v0, v1}, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;->onSimLockChangedResponse(I)V
+    invoke-virtual {v0, v1}, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;->onSimLockChangedResponse(Z)V
 
-    .line 185
     return-void
 .end method

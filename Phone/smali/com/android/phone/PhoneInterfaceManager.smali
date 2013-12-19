@@ -3062,3 +3062,13 @@
     .line 528
     return-void
 .end method
+
+.method public supplyPinReportResult(Ljava/lang/String;)I
+    .locals 2
+    .parameter "pin"
+
+    .prologue
+    const/4 v1, 0x1
+
+    return v1
+.end method

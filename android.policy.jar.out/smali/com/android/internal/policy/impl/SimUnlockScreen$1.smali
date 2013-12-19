@@ -25,7 +25,6 @@
     .parameter "x0"
 
     .prologue
-    .line 237
     iput-object p1, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$1;->this$0:Lcom/android/internal/policy/impl/SimUnlockScreen;
 
     invoke-direct {p0, p1, p2}, Lcom/android/internal/policy/impl/SimUnlockScreen$CheckSimPin;-><init>(Lcom/android/internal/policy/impl/SimUnlockScreen;Ljava/lang/String;)V
@@ -35,22 +34,23 @@
 
 
 # virtual methods
-.method onSimLockChangedResponse(I)V
+.method onSimLockChangedResponse(Z)V
     .locals 2
-    .parameter "result"
+    .parameter "success"
 
     .prologue
-    .line 239
     iget-object v0, p0, Lcom/android/internal/policy/impl/SimUnlockScreen$1;->this$0:Lcom/android/internal/policy/impl/SimUnlockScreen;
 
-    iget-object v0, v0, Lcom/android/internal/policy/impl/SimUnlockScreen;->mPinText:Landroid/widget/TextView;
+    #getter for: Lcom/android/internal/policy/impl/SimUnlockScreen;->mPinText:Landroid/widget/TextView;
+    invoke-static {v0}, Lcom/android/internal/policy/impl/SimUnlockScreen;->access$500(Lcom/android/internal/policy/impl/SimUnlockScreen;)Landroid/widget/TextView;
+
+    move-result-object v0
 
     new-instance v1, Lcom/android/internal/policy/impl/SimUnlockScreen$1$1;
 
-    invoke-direct {v1, p0, p1}, Lcom/android/internal/policy/impl/SimUnlockScreen$1$1;-><init>(Lcom/android/internal/policy/impl/SimUnlockScreen$1;I)V
+    invoke-direct {v1, p0, p1}, Lcom/android/internal/policy/impl/SimUnlockScreen$1$1;-><init>(Lcom/android/internal/policy/impl/SimUnlockScreen$1;Z)V
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->post(Ljava/lang/Runnable;)Z
 
-    .line 288
     return-void
 .end method
