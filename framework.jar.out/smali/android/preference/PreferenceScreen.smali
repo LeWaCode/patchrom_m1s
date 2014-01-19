@@ -108,13 +108,9 @@
 
     .line 174
     .local v4, title:Ljava/lang/CharSequence;
-    new-instance v2, Landroid/app/Dialog;
+    invoke-static {v1}, Landroid/preference/PreferenceScreen$Injector;->createPreferenceDialog(Landroid/content/Context;)Landroid/app/Dialog;
 
-    invoke-virtual {v1}, Landroid/content/Context;->getThemeResId()I
-
-    move-result v5
-
-    invoke-direct {v2, v1, v5}, Landroid/app/Dialog;-><init>(Landroid/content/Context;I)V
+    move-result-object v2
 
     iput-object v2, p0, Landroid/preference/PreferenceScreen;->mDialog:Landroid/app/Dialog;
 
@@ -150,17 +146,21 @@
 
     .line 187
     :cond_1
+    invoke-virtual {v2}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
+
+    move-result-object v5
+
+    invoke-static {v1, v5}, Landroid/preference/PreferenceScreen$Injector;->setContentViewForeground(Landroid/content/Context;Landroid/view/Window;)V
+
     invoke-virtual {p0}, Landroid/preference/PreferenceScreen;->getPreferenceManager()Landroid/preference/PreferenceManager;
 
     move-result-object v5
 
     invoke-virtual {v5, v2}, Landroid/preference/PreferenceManager;->addPreferencesScreen(Landroid/content/DialogInterface;)V
 
-    invoke-static {p0, v1, p1, v0}, Landroid/preference/PreferenceScreen$Injector;->showPreferenceDialog(Landroid/preference/PreferenceScreen;Landroid/content/Context;Landroid/os/Bundle;Landroid/view/View;)Landroid/app/Dialog;
+    invoke-virtual {v2}, Landroid/app/Dialog;->show()V
 
-    move-result-object v5
-
-    iput-object v5, p0, Landroid/preference/PreferenceScreen;->mDialog:Landroid/app/Dialog;
+    invoke-static {v1, v2, v6}, Landroid/preference/PreferenceScreen$Injector;->setDisplayHomeAsUpEnabled(Landroid/content/Context;Landroid/app/Dialog;Z)V
 
     return-void
 

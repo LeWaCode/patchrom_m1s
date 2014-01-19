@@ -33,6 +33,12 @@
 
 .field private mChangingConfigurations:I
 
+.field mId:I
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_FIELD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+.end field
+
 .field private mLevel:I
 
 .field private mStateSet:[I
@@ -90,7 +96,10 @@
 
     iput-boolean v0, p0, Landroid/graphics/drawable/Drawable;->mVisible:Z
 
-    .line 940
+    const/4 v0, -0x1
+
+    iput v0, p0, Landroid/graphics/drawable/Drawable;->mId:I
+
     return-void
 .end method
 
@@ -965,6 +974,18 @@
     return-object p0
 .end method
 
+.method public getId()I
+    .locals 1
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
+    .prologue
+    iget v0, p0, Landroid/graphics/drawable/Drawable;->mId:I
+
+    return v0
+.end method
+
 .method public getIntrinsicHeight()I
     .locals 1
 
@@ -1445,6 +1466,19 @@
 
     .prologue
     .line 251
+    return-void
+.end method
+
+.method public setId(I)V
+    .locals 0
+    .parameter "id"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->NEW_METHOD:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
+    .prologue
+    iput p1, p0, Landroid/graphics/drawable/Drawable;->mId:I
+
     return-void
 .end method
 

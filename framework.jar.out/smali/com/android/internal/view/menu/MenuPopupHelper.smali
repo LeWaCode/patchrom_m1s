@@ -14,6 +14,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/internal/view/menu/MenuPopupHelper$Injector;,
         Lcom/android/internal/view/menu/MenuPopupHelper$MenuAdapter;
     }
 .end annotation
@@ -863,6 +864,9 @@
 
 .method public tryShow()Z
     .locals 7
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
 
     .prologue
     const/4 v0, 0x0
@@ -892,7 +896,12 @@
 
     invoke-virtual {v3, p0}, Landroid/widget/ListPopupWindow;->setOnItemClickListener(Landroid/widget/AdapterView$OnItemClickListener;)V
 
-    .line 110
+    iget-object v3, p0, Lcom/android/internal/view/menu/MenuPopupHelper;->mContext:Landroid/content/Context;
+
+    iget-object v4, p0, Lcom/android/internal/view/menu/MenuPopupHelper;->mPopup:Landroid/widget/ListPopupWindow;
+
+    invoke-static {v3, v4}, Lcom/android/internal/view/menu/MenuPopupHelper$Injector;->setListPopupWindowSelector(Landroid/content/Context;Landroid/widget/ListPopupWindow;)V
+
     new-instance v3, Lcom/android/internal/view/menu/MenuPopupHelper$MenuAdapter;
 
     iget-object v4, p0, Lcom/android/internal/view/menu/MenuPopupHelper;->mMenu:Lcom/android/internal/view/menu/MenuBuilder;

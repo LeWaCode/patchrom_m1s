@@ -2727,8 +2727,12 @@
 .end method
 
 .method public getResourcesForApplication(Landroid/content/pm/ApplicationInfo;)Landroid/content/res/Resources;
-    .locals 4
+    .locals 5
     .parameter "app"
+    .annotation build Landroid/annotation/LewaHook;
+        value = .enum Landroid/annotation/LewaHook$LewaHookType;->CHANGE_CODE:Landroid/annotation/LewaHook$LewaHookType;
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/content/pm/PackageManager$NameNotFoundException;
@@ -2736,10 +2740,9 @@
     .end annotation
 
     .prologue
-    .line 711
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
-    const-string/jumbo v2, "system"
+    const-string v2, "system"
 
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -2747,7 +2750,6 @@
 
     if-eqz v1, :cond_1
 
-    .line 712
     iget-object v1, p0, Landroid/app/ApplicationPackageManager;->mContext:Landroid/app/ContextImpl;
 
     iget-object v1, v1, Landroid/app/ContextImpl;->mMainThread:Landroid/app/ActivityThread;
@@ -2760,12 +2762,16 @@
 
     move-result-object v0
 
-    .line 718
     :cond_0
     return-object v0
 
-    .line 714
     :cond_1
+    move-object v0, p1
+
+    iget-object v4, v0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
+
+    .local v4, packageName:Ljava/lang/String;
+
     iget-object v1, p0, Landroid/app/ApplicationPackageManager;->mContext:Landroid/app/ContextImpl;
 
     iget-object v2, v1, Landroid/app/ContextImpl;->mMainThread:Landroid/app/ActivityThread;
@@ -2785,15 +2791,13 @@
 
     iget-object v3, v3, Landroid/app/ContextImpl;->mPackageInfo:Landroid/app/LoadedApk;
 
-    invoke-virtual {v2, v1, v3}, Landroid/app/ActivityThread;->getTopLevelResources(Ljava/lang/String;Landroid/app/LoadedApk;)Landroid/content/res/Resources;
+    invoke-virtual {v2, v4, v1, v3}, Landroid/app/ActivityThread;->getTopLevelResources(Ljava/lang/String;Ljava/lang/String;Landroid/app/LoadedApk;)Landroid/content/res/Resources;
 
     move-result-object v0
 
-    .line 717
     .local v0, r:Landroid/content/res/Resources;
     if-nez v0, :cond_0
 
-    .line 720
     new-instance v1, Landroid/content/pm/PackageManager$NameNotFoundException;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -2820,7 +2824,6 @@
 
     throw v1
 
-    .line 714
     .end local v0           #r:Landroid/content/res/Resources;
     :cond_2
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->publicSourceDir:Ljava/lang/String;
