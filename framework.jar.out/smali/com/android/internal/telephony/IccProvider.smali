@@ -685,11 +685,9 @@
     .end local v11           #param:Ljava/lang/String;
     .end local v14           #val:Ljava/lang/String;
     :cond_5
-    invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    const/16 v1, 0x6f3b
 
-    move-result v1
-
-    if-eqz v1, :cond_6
+    if-ne v2, v1, :cond_6
 
     .line 233
     const/4 v1, 0x0
@@ -700,22 +698,6 @@
 
     .line 236
     :cond_6
-    const/16 v1, 0x6f3b
-
-    if-ne v2, v1, :cond_7
-
-    invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_7
-
-    .line 237
-    const/4 v1, 0x0
-
-    goto :goto_2
-
-    :cond_7
     move-object/from16 v1, p0
 
     .line 240
@@ -725,7 +707,7 @@
 
     .line 241
     .local v12, success:Z
-    if-nez v12, :cond_8
+    if-nez v12, :cond_7
 
     .line 242
     const/4 v1, 0x0
@@ -733,7 +715,7 @@
     goto :goto_2
 
     .line 245
-    :cond_8
+    :cond_7
     const/4 v1, 0x1
 
     goto :goto_2
