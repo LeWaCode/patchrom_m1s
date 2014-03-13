@@ -695,7 +695,7 @@
 
     .line 151
     :cond_0
-    const v0, 0x7f060042
+    const v0, 0x7f060043
 
     invoke-virtual {p0, v0}, Lcom/android/settings/IccLockSettings;->addPreferencesFromResource(I)V
 
