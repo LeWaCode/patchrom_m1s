@@ -26,6 +26,8 @@ local-lewa-partner := Lewa
 
 local-lewa-device := M1S_JB
 
+local-ota-assert-device := M1S_JB,m1s
+
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
 # Default configrations are HDPI for ics branch and XHDPI for jellybean branch
 local-density := HDPI
